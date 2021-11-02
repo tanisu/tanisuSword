@@ -19,7 +19,6 @@ public class BGController : MonoBehaviour
         {
             posY += 0.5f;
         }
-        Debug.Log(posY);
         Vector3 nowPos = transform.position;
         nowPos.y = posY + basePos.z;
         transform.position = nowPos;
