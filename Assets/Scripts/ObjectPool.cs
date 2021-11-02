@@ -25,8 +25,24 @@ public class ObjectPool : MonoBehaviour
         
     }
 
-    public void Collect(PoolContent poolContent)
+    public PoolContent Launch(Vector3 _pos, float _angle)
     {
-
+        if (objQueue.Count <= 0) return null;
+        PoolContent tmpObj = objQueue.Dequeue();
+        tmpObj.gameObject.SetActive(true);
+        tmpObj.ShowInStage(_pos, _angle);
+        return tmpObj;
     }
+
+    public void Collect(PoolContent _obj)
+    {
+        _obj.gameObject.SetActive(false);
+        objQueue.Enqueue(_obj);
+    }
+
+    public void ResetAll()
+    {
+        BroadcastMessage("HideFromStage", SendMessageOptions.DontRequireReceiver);
+    }
+
 }

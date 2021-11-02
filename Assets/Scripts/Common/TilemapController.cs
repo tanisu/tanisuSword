@@ -20,7 +20,7 @@ public class TilemapController : MonoBehaviour
     {
         for(float y = -6;y < 6; y += 0.5f)
         {
-            for(float x = -3;x < 3; x += 0.5f)
+            for(float x = -4;x < 4; x += 0.5f)
             {
                 GameObject t = Instantiate(blockTile);
                 t.transform.SetParent(transform);

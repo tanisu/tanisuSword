@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class StageController : MonoBehaviour
 {
+    [SerializeField] public ObjectPool playerBulletPool = default;
     [SerializeField] public PlayerController player = default;
-    private float stageSpeed = 0.5f;
+    [SerializeField] float stageSpeed = 0.5f;
     private static StageController i;
     public static StageController I { get => i; }
 
@@ -25,5 +26,9 @@ public class StageController : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
         player.Move(new Vector3(x,y,0));
+        if (Input.GetKey(KeyCode.Space))
+        {
+            player.Shot();
+        }
     }
 }
