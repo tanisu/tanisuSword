@@ -5,6 +5,7 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     public float speed;
+    public int attack;
     PoolContent poolContent;
 
     void Start()

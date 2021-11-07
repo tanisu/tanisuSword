@@ -1,34 +1,19 @@
 fileFormatVersion: 2
-guid: 197a2ca135ecb89448b90f6b0f08dd82
+guid: f51dcb5ea8ef3de46ac8c23e76474b2f
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6680556436121249758
-    second: mountain_0
+      213: 4659564074115732819
+    second: ZombileDead_0
   - first:
-      213: 1494541406350700143
-    second: mountain_1
+      213: -9118181418493974394
+    second: ZombileDead_1
   - first:
-      213: -2689809628593362883
-    second: mountain_2
+      213: 1826497806115724582
+    second: ZombileDead_2
   - first:
-      213: -8267942698526833617
-    second: mountain_3
-  - first:
-      213: -3187686726534536579
-    second: mountain_4
-  - first:
-      213: 8626178264726462363
-    second: mountain_5
-  - first:
-      213: 7153422706805526836
-    second: mountain_6
-  - first:
-      213: -932758865789122231
-    second: mountain_7
-  - first:
-      213: -8484058456220975373
-    second: mountain_8
+      213: 7209817716474292831
+    second: ZombileDead_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -154,84 +139,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: mountain_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2281b030155e943a0800000000000000
-      internalID: -6680556436121249758
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mountain_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-      bones: []
-      spriteID: f6e65ab9d7dadb410800000000000000
-      internalID: 1494541406350700143
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mountain_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 32
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-      bones: []
-      spriteID: d38644ed460ebaad0800000000000000
-      internalID: -2689809628593362883
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mountain_3
+      name: ZombileDead_0
       rect:
         serializedVersion: 2
         x: 0
@@ -239,66 +147,41 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-      bones: []
-      spriteID: f24060fcbed524d80800000000000000
-      internalID: -8267942698526833617
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mountain_4
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 16
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d726ea1bfcf03c3d0800000000000000
-      internalID: -3187686726534536579
+      spriteID: 35517d586d81aa040800000000000000
+      internalID: 4659564074115732819
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mountain_5
+      name: ZombileDead_1
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 16
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b9f5736ad6756b770800000000000000
-      internalID: 8626178264726462363
+      spriteID: 68869116f46b57180800000000000000
+      internalID: -9118181418493974394
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mountain_6
+      name: ZombileDead_2
       rect:
         serializedVersion: 2
         x: 0
@@ -306,24 +189,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4315b572d00164360800000000000000
-      internalID: 7153422706805526836
+      spriteID: 62dde84d316095910800000000000000
+      internalID: 1826497806115724582
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: mountain_7
+      name: ZombileDead_3
       rect:
         serializedVersion: 2
         x: 16
@@ -331,43 +210,14 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9490b87e0cc2e03f0800000000000000
-      internalID: -932758865789122231
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: mountain_8
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -8, y: 8}
-        - {x: -8, y: -8}
-        - {x: 8, y: -8}
-        - {x: 8, y: 8}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3febc47d8c1924a80800000000000000
-      internalID: -8484058456220975373
+      spriteID: f5aa4cd830b6e0460800000000000000
+      internalID: 7209817716474292831
       vertices: []
       indices: 
       edges: []

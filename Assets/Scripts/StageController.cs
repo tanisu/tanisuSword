@@ -9,6 +9,12 @@ public class StageController : MonoBehaviour
     [SerializeField] float stageSpeed = 0.5f;
     private static StageController i;
     public static StageController I { get => i; }
+    public enum PlayStopCodeDef
+    {
+        PlayerDead,
+        BossDefeat,
+    }
+    public PlayStopCodeDef playStopCode;
 
     private void Awake()
     {
@@ -22,6 +28,12 @@ public class StageController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (player.isDead)
+        {
+            playStopCode = PlayStopCodeDef.PlayerDead;
+            stageSpeed = 0;
+        }
+
         transform.Translate(Vector3.up * Time.deltaTime * stageSpeed);
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
