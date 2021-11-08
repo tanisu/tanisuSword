@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8931631922575649314}
   - component: {fileID: 2758733223109266914}
   - component: {fileID: 5319785708769483755}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Zombie
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -31,6 +31,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 4.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -46,6 +47,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -88,7 +90,7 @@ SpriteRenderer:
   m_SpriteSortPoint: 0
 --- !u!95 &4310038704550859683
 Animator:
-  serializedVersion: 3
+  serializedVersion: 4
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -101,6 +103,7 @@ Animator:
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
@@ -117,11 +120,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f3145096b333442b3328cb02c11ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitPoint: 10
+  hp: 3
   ObstacleLayer:
     serializedVersion: 2
     m_Bits: 64
   speed: 0.5
+  power: 3
+  dir: 0
 --- !u!61 &2758733223109266914
 BoxCollider2D:
   m_ObjectHideFlags: 0

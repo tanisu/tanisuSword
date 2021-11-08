@@ -8,6 +8,8 @@ TagManager:
   - Wall
   - Obstacle
   - Enemy
+  - House
+  - Item
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - Water
   - UI
   - Obstacle
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -47,4 +49,7 @@ TagManager:
     locked: 0
   - name: Character
     uniqueID: 1020418649
+    locked: 0
+  - name: UI
+    uniqueID: 271559857
     locked: 0
