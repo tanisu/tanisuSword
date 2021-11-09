@@ -25,12 +25,12 @@ public class ObjectPool : MonoBehaviour
         
     }
 
-    public PoolContent Launch(Vector3 _pos, float _angle)
+    public PoolContent Launch(Vector3 _pos)
     {
         if (objQueue.Count <= 0) return null;
         PoolContent tmpObj = objQueue.Dequeue();
         tmpObj.gameObject.SetActive(true);
-        tmpObj.ShowInStage(_pos, _angle);
+        tmpObj.ShowInStage(_pos);
         return tmpObj;
     }
 

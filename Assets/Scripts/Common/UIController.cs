@@ -17,7 +17,6 @@ public class UIController : MonoBehaviour
         if (StageController.I.isStop)
         {
             DOTween.To(()=>s.value,val=>s.value = val,hp,1.0f).OnComplete(()=>{
-                StageController.I.isStop = false;
                 StageController.I.ReScroll();
             });
         }

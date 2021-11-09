@@ -6,7 +6,7 @@ public class Actor : MonoBehaviour
 {
     
     [SerializeField] protected int hp;
-    
+    public int power;
     private void Start()
     {
         

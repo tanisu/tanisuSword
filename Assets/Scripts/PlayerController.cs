@@ -6,6 +6,7 @@ public class PlayerController : Actor
 {
     private ObjectPool bulletPool;
     private float interval = 0;//‚±‚êˆÈ‰º‚Ì‚Æ‚«‚µ‚©”­ŽË‚Å‚«‚È‚¢
+    
     private SpriteRenderer sp;
     [SerializeField] float shootInterval;//”­ŽËŠÔŠu
     [SerializeField] float minShootInterval;
@@ -33,7 +34,10 @@ public class PlayerController : Actor
 
     public void Move(Vector3 _moveVec)
     {
-        
+        if (StageController.I.isStop)
+        {
+            return;
+        }
         transform.Translate(_moveVec * speed * Time.deltaTime);
         Vector3 nowPos = transform.localPosition;
         nowPos.x = Mathf.Clamp(nowPos.x, -moveLimitX, moveLimitX);
@@ -45,8 +49,12 @@ public class PlayerController : Actor
     {
         if(interval <= 0)
         {
-            PoolContent bullet = bulletPool.Launch(transform.position + Vector3.up * 0.1f, 0);
-            if (bullet != null) bullet.GetComponent<BulletController>().speed = bulletSpeed;
+            PoolContent bullet = bulletPool.Launch(transform.position + Vector3.up * 0.1f);
+            if (bullet != null) {
+                bullet.GetComponent<BulletController>().Setting(Mathf.PI / 2);
+                bullet.GetComponent<BulletController>().speed = bulletSpeed;
+                bullet.GetComponent<BulletController>().power = power;
+            } 
             interval = shootInterval;
         }
     }
@@ -54,21 +62,26 @@ public class PlayerController : Actor
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy") || collision.CompareTag("EnemyBullet"))
         {
-            DelHp(collision.gameObject.GetComponent<Enemy>().power,sp);
+            int damage = collision.CompareTag("Enemy") ? collision.gameObject.GetComponent<Enemy>().power : collision.gameObject.GetComponent<BulletController>().power;
+            DelHp(damage,sp);
             StageController.I.UpdateHp(hp);
             
-            
+            if(hp <= 0)
+            {
+                isDead = true;
+            }
         }
         if (collision.CompareTag("House"))
         {
+            sp.sortingOrder = -1;
             collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             transform.position = collision.gameObject.transform.position;
-            StageController.I.isStop = true;
+            
             StageController.I.stopScroll();
             StageController.I.UpdateHp(maxHp);
-            
+            StartCoroutine(_showMe());
         }
         if (collision.CompareTag("Item"))
         {
@@ -94,11 +107,21 @@ public class PlayerController : Actor
         }
     }
 
+    IEnumerator _showMe()
+    {
+        yield return new WaitForSeconds(0.9f);
+        sp.sortingOrder = 1;
+    }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Obstacle") && transform.localPosition.y == -4.5f)
         {
+            
+            StageController.I.UpdateHp(0);
             isDead = true;
+            
+            
         }
     }
 }

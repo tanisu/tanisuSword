@@ -6,7 +6,9 @@ using UnityEngine;
 public class StageController : MonoBehaviour
 {
     [SerializeField] public ObjectPool playerBulletPool = default;
+    [SerializeField] public ObjectPool enemyBulletPool = default;
     [SerializeField] public PlayerController player = default;
+    
     [SerializeField] float stageSpeed = 0.5f;
     [SerializeField] UIController ui;
 
@@ -36,9 +38,11 @@ public class StageController : MonoBehaviour
         if (player.isDead)
         {
             playStopCode = PlayStopCodeDef.PlayerDead;
+            enemyBulletPool.ResetAll();
             stopScroll();
         }
 
+        
 
         transform.Translate(Vector3.up * Time.deltaTime * stageSpeed);
 
@@ -60,11 +64,13 @@ public class StageController : MonoBehaviour
 
     public void stopScroll()
     {
+        isStop = true;
         stageSpeed = 0.0f;
     }
 
     public void ReScroll()
     {
+        isStop = false;
         stageSpeed = 0.1f;
     }
 }

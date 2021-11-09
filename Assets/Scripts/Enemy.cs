@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : Actor
 {
+    [SerializeField] bool isFling;
     
     [SerializeField] LayerMask ObstacleLayer;
     [SerializeField] float speed;
@@ -12,7 +13,8 @@ public class Enemy : Actor
     bool isTurn;
     float width = 0.2f;
     float lineLength = 0.2f;
-    public int power;
+    ObjectPool bulletPool;
+    Animator anim;
 
     public enum DIR
     {
@@ -27,12 +29,32 @@ public class Enemy : Actor
     {
         isObstacles = new bool[(int)DIR.MAX];
         sp = GetComponent<SpriteRenderer>();
-        
+        bulletPool = StageController.I.enemyBulletPool;
+        anim = GetComponent<Animator>();
     }
 
     
     void Update()
-    {       
+    {
+        if (StageController.I.isStop)
+        {
+            anim.enabled = false;
+            return;
+        }
+        if ( !isFling)
+        {
+            WalkingMove();
+        }
+
+        if (transform.position.y - StageController.I.transform.position.y < -5.5)
+        {
+            HideFromStage();
+        }
+
+    }
+
+    private void WalkingMove()
+    {
         Vector3 rightDwonPos = transform.position + Vector3.right * width;
         Vector3 leftDwonPos = transform.position - Vector3.right * width;
         Vector3 rightEndPos = transform.position - Vector3.up * lineLength + Vector3.right * width;
@@ -50,21 +72,21 @@ public class Enemy : Actor
         {
             dir = DIR.DOWN;
             isTurn = false;
-            
+
         }
         else
         {
             if (!isObstacles[(int)DIR.LEFT] && !isTurn)
             {
                 dir = DIR.LEFT;
-                
+
             }
-            else if(isObstacles[(int)DIR.LEFT])
+            else if (isObstacles[(int)DIR.LEFT])
             {
                 dir = DIR.RIGHT;
                 isTurn = true;
             }
-            else if (isObstacles[(int)DIR.RIGHT]) 
+            else if (isObstacles[(int)DIR.RIGHT])
             {
                 isTurn = false;
             }
@@ -86,15 +108,7 @@ public class Enemy : Actor
                 transform.Translate(Vector3.down * speed * Time.deltaTime);
                 break;
         }
-
-        if (transform.position.y - StageController.I.transform.position.y < -5.5)
-        {
-            HideFromStage();
-        }
-
     }
-
-
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -103,11 +117,73 @@ public class Enemy : Actor
         {
             
             PoolContent poolObj = collision.GetComponent<PoolContent>();
+            int damage = poolObj.GetComponent<BulletController>().power;
             poolObj.HideFromStage();
 
-            DelHp(1,sp);
+            DelHp(damage,sp);
 
         }
+    }
+
+    public void Shot(EnemyBulletPattern _o)
+    {
+        float angleOffset = (_o.Count - 1) / 2.0f;
+        float openAngle = 0;
+        if (_o.IsAimPlayer)
+        {
+            Vector3 diff = StageController.I.player.transform.localPosition - transform.localPosition;
+            openAngle = Vector3.SignedAngle(
+                -Vector3.up,
+                diff,
+                -Vector3.up
+            );
+
+            if (diff.x < 0)
+            {
+                openAngle *= -1;
+            }
+            
+            
+
+            //PoolContent obj = bulletPool.Launch(transform.position + Vector3.up * 0.2f);
+            //if (obj != null)
+            //{
+            //    BulletController bullet = obj.GetComponent<BulletController>();
+            //    bullet.speed = _o.Speed;
+            //    bullet.power = _o.Power;
+            //    bullet.Setting(d);
+            //}
+        }
+        else
+        {
+            openAngle = _o.OpenAngle;
+
+        }
+        for (int i = 0; i < _o.Count; i++)
+        {
+            float d = 0f;
+            if (_o.IsAimPlayer)
+            {
+                d = -Mathf.PI / 2 + (openAngle * Mathf.Deg2Rad);
+            }
+            else
+            {
+                d = -Mathf.PI / 2 + ((i - angleOffset) * openAngle * Mathf.Deg2Rad);
+            }
+            
+
+            PoolContent obj = bulletPool.Launch(transform.position + Vector3.up * 0.2f);
+            if (obj != null)
+            {
+                BulletController bullet = obj.GetComponent<BulletController>();
+                bullet.speed = _o.Speed;
+                bullet.power = _o.Power;
+                bullet.Setting(d);
+
+            }
+        }
+
+
     }
 
 

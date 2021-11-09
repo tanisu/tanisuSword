@@ -33,7 +33,7 @@ public class MapChips : MonoBehaviour
             pool.HideFromStage();
             if (breakObj)
             {
-                hp -= collision.GetComponent<BulletController>().attack;
+                hp -= collision.GetComponent<BulletController>().power;
                 
                 if (hp <= 0)
                 {
