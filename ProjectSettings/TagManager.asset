@@ -11,6 +11,8 @@ TagManager:
   - House
   - Item
   - EnemyBullet
+  - Trap
+  - DeadLine
   layers:
   - Default
   - TransparentFX

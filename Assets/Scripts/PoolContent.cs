@@ -6,14 +6,13 @@ public class PoolContent : MonoBehaviour
 {
     ObjectPool pool;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         pool = transform.parent.GetComponent<ObjectPool>();
         gameObject.SetActive(false);
     }
 
-    // Update is called once per frame
     void Update()
     {
         

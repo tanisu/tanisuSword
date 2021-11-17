@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerController : Actor
 {
@@ -19,6 +20,10 @@ public class PlayerController : Actor
     [SerializeField] float maxSpeed;
     [SerializeField] float speed;
     public bool isDead;
+    [SerializeField] Vector3 smallScale = new Vector3(0.9f,0.9f);
+    Vector3 defaultScale = new Vector3(1,1,1);
+    bool isInHole;
+    bool isDeadLine;
     
     void Start()
     {
@@ -30,11 +35,15 @@ public class PlayerController : Actor
     void Update()
     {
         interval -= Time.deltaTime;
+        if (isInHole)
+        {
+            transform.position -= new Vector3(0,0.1f) * Time.deltaTime;
+        }
     }
 
     public void Move(Vector3 _moveVec)
     {
-        if (StageController.I.isStop)
+        if (StageController.I.isStop || isInHole)
         {
             return;
         }
@@ -47,7 +56,11 @@ public class PlayerController : Actor
 
     public void Shot()
     {
-        if(interval <= 0)
+        if (StageController.I.isStop || isInHole)
+        {
+            return;
+        }
+        if (interval <= 0)
         {
             PoolContent bullet = bulletPool.Launch(transform.position + Vector3.up * 0.1f);
             if (bullet != null) {
@@ -59,9 +72,20 @@ public class PlayerController : Actor
         }
     }
 
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("DeadLine"))
+        {
+            isDeadLine = false;
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
+        if (collision.CompareTag("DeadLine"))
+        {
+            isDeadLine = true;
+        }
         if (collision.CompareTag("Enemy") || collision.CompareTag("EnemyBullet"))
         {
             int damage = collision.CompareTag("Enemy") ? collision.gameObject.GetComponent<Enemy>().power : collision.gameObject.GetComponent<BulletController>().power;
@@ -71,6 +95,19 @@ public class PlayerController : Actor
             if(hp <= 0)
             {
                 isDead = true;
+            }
+        }
+        if (collision.CompareTag("Trap"))
+        {
+            switch (collision.name)
+            {
+                case "Hole":
+                    transform.position = collision.gameObject.transform.position;
+                    transform.localScale = smallScale;
+                    isInHole = true;
+                    collision.GetComponent<Hole>().ViewChild();
+                    StartCoroutine(_jump(collision));
+                    break;
             }
         }
         if (collision.CompareTag("House"))
@@ -107,6 +144,18 @@ public class PlayerController : Actor
         }
     }
 
+   
+
+    IEnumerator _jump(Collider2D collision)
+    {
+        yield return new WaitForSeconds(1.5f);
+        transform.DOLocalJump(transform.localPosition,0.5f,1,0.5f).SetLink(gameObject);
+        transform.localScale = defaultScale;
+        collision.gameObject.SetActive(false);
+        isInHole = false;
+
+    }
+
     IEnumerator _showMe()
     {
         yield return new WaitForSeconds(0.9f);
@@ -115,13 +164,32 @@ public class PlayerController : Actor
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Obstacle") && transform.localPosition.y == -4.5f)
+
+        if (collision.gameObject.CompareTag("Obstacle") )
         {
+            Debug.Log("collision");
+            if (isDeadLine)
+            {
+                Debug.Log("Dead");
+                StageController.I.UpdateHp(0);
+                isDead = true;
+            }
             
-            StageController.I.UpdateHp(0);
-            isDead = true;
             
             
+        }
+    }
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            Debug.Log("Stay");
+            if (isDeadLine)
+            {
+                Debug.Log("Dead");
+                StageController.I.UpdateHp(0);
+                isDead = true;
+            }
         }
     }
 }

@@ -119,7 +119,6 @@ public class Enemy : Actor
             PoolContent poolObj = collision.GetComponent<PoolContent>();
             int damage = poolObj.GetComponent<BulletController>().power;
             poolObj.HideFromStage();
-
             DelHp(damage,sp);
 
         }
@@ -132,45 +131,23 @@ public class Enemy : Actor
         if (_o.IsAimPlayer)
         {
             Vector3 diff = StageController.I.player.transform.localPosition - transform.localPosition;
-            openAngle = Vector3.SignedAngle(
-                -Vector3.up,
-                diff,
-                -Vector3.up
-            );
-
-            if (diff.x < 0)
-            {
-                openAngle *= -1;
-            }
-            
-            
-
-            //PoolContent obj = bulletPool.Launch(transform.position + Vector3.up * 0.2f);
-            //if (obj != null)
-            //{
-            //    BulletController bullet = obj.GetComponent<BulletController>();
-            //    bullet.speed = _o.Speed;
-            //    bullet.power = _o.Power;
-            //    bullet.Setting(d);
-            //}
+            openAngle = Mathf.Atan2(diff.y,diff.x);
         }
         else
         {
             openAngle = _o.OpenAngle;
-
         }
         for (int i = 0; i < _o.Count; i++)
         {
             float d = 0f;
             if (_o.IsAimPlayer)
             {
-                d = -Mathf.PI / 2 + (openAngle * Mathf.Deg2Rad);
+                d = openAngle ;
             }
             else
             {
                 d = -Mathf.PI / 2 + ((i - angleOffset) * openAngle * Mathf.Deg2Rad);
             }
-            
 
             PoolContent obj = bulletPool.Launch(transform.position + Vector3.up * 0.2f);
             if (obj != null)
@@ -179,7 +156,6 @@ public class Enemy : Actor
                 bullet.speed = _o.Speed;
                 bullet.power = _o.Power;
                 bullet.Setting(d);
-
             }
         }
 
