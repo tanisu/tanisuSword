@@ -18,6 +18,10 @@ public class BulletController : MonoBehaviour
         dx = Mathf.Cos(angle);
         dy = Mathf.Sin(angle);
     }
+    public void HideFromStage()
+    {
+        poolContent.HideFromStage();
+    }
 
     
     void Update()

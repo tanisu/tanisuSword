@@ -38,9 +38,10 @@ public class Enemy : Actor
     {
         if (StageController.I.isStop)
         {
-            anim.enabled = false;
+            anim.speed = 0;
             return;
         }
+        
         if ( !isFling)
         {
             WalkingMove();

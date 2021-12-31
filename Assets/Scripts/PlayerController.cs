@@ -19,16 +19,22 @@ public class PlayerController : Actor
     [SerializeField] int maxHp;
     [SerializeField] float maxSpeed;
     [SerializeField] float speed;
+    [SerializeField] GameObject shilde;
+    [SerializeField] Sprite deadSprite;
     public bool isDead;
     [SerializeField] Vector3 smallScale = new Vector3(0.9f,0.9f);
     Vector3 defaultScale = new Vector3(1,1,1);
     bool isInHole;
     bool isDeadLine;
-    
+    bool hasShilde;
+    Animator anim;
+
     void Start()
     {
         bulletPool = StageController.I.playerBulletPool;
         sp = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
+        
     }
 
     
@@ -37,7 +43,7 @@ public class PlayerController : Actor
         interval -= Time.deltaTime;
         if (isInHole)
         {
-            transform.position -= new Vector3(0,0.1f) * Time.deltaTime;
+            transform.position -= new Vector3(0,StageController.I.stageSpeed) * Time.deltaTime;
         }
     }
 
@@ -72,6 +78,11 @@ public class PlayerController : Actor
         }
     }
 
+    public void HasShilde()
+    {
+        hasShilde = !hasShilde;
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("DeadLine"))
@@ -88,14 +99,23 @@ public class PlayerController : Actor
         }
         if (collision.CompareTag("Enemy") || collision.CompareTag("EnemyBullet"))
         {
-            int damage = collision.CompareTag("Enemy") ? collision.gameObject.GetComponent<Enemy>().power : collision.gameObject.GetComponent<BulletController>().power;
-            DelHp(damage,sp);
-            StageController.I.UpdateHp(hp);
-            
-            if(hp <= 0)
+            if (!shilde.GetComponent<Shilde>().isHit)
             {
-                isDead = true;
+                
+                int damage = collision.CompareTag("Enemy") ? collision.gameObject.GetComponent<Enemy>().power : collision.gameObject.GetComponent<BulletController>().power;
+                DelHp(damage, sp);
+                StageController.I.UpdateHp(hp);
+
+                if (hp <= 0)
+                {
+                    _deadMe();
+                }
             }
+            else
+            {
+                shilde.GetComponent<Shilde>().isHit = false;
+            }
+
         }
         if (collision.CompareTag("Trap"))
         {
@@ -112,10 +132,11 @@ public class PlayerController : Actor
         }
         if (collision.CompareTag("House"))
         {
+            
             sp.sortingOrder = -1;
             collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             transform.position = collision.gameObject.transform.position;
-            
+            shilde.SetActive(false);
             StageController.I.stopScroll();
             StageController.I.UpdateHp(maxHp);
             StartCoroutine(_showMe());
@@ -138,9 +159,16 @@ public class PlayerController : Actor
                         shootInterval -= i.powerPoint;
                     }
                 break;
+                case "Shilde":
+                    if (!hasShilde)
+                    {
+                        hasShilde = true;
+                        shilde.SetActive(true);
+                    }
+                    break;
             }
-
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
+            //Destroy(collision.gameObject);
         }
     }
 
@@ -149,16 +177,22 @@ public class PlayerController : Actor
     IEnumerator _jump(Collider2D collision)
     {
         yield return new WaitForSeconds(1.5f);
-        transform.DOLocalJump(transform.localPosition,0.5f,1,0.5f).SetLink(gameObject);
+        GetComponent<BoxCollider2D>().enabled = false;
+        transform.DOLocalJump(transform.localPosition,0.5f,1,0.5f).SetLink(gameObject).OnComplete(()=> {
+            GetComponent<BoxCollider2D>().enabled = true;
+        });
         transform.localScale = defaultScale;
         collision.gameObject.SetActive(false);
         isInHole = false;
-
     }
 
     IEnumerator _showMe()
     {
         yield return new WaitForSeconds(0.9f);
+        if (hasShilde)
+        {
+            shilde.SetActive(true);
+        }
         sp.sortingOrder = 1;
     }
 
@@ -167,12 +201,10 @@ public class PlayerController : Actor
 
         if (collision.gameObject.CompareTag("Obstacle") )
         {
-            Debug.Log("collision");
+
             if (isDeadLine)
             {
-                Debug.Log("Dead");
-                StageController.I.UpdateHp(0);
-                isDead = true;
+                _deadMe();
             }
             
             
@@ -183,13 +215,20 @@ public class PlayerController : Actor
     {
         if (collision.gameObject.CompareTag("Obstacle"))
         {
-            Debug.Log("Stay");
+            
             if (isDeadLine)
             {
-                Debug.Log("Dead");
-                StageController.I.UpdateHp(0);
-                isDead = true;
+                _deadMe();
             }
         }
+    }
+
+    private void _deadMe()
+    {
+        shilde.SetActive(false);
+        anim.enabled = false;
+        sp.sprite = deadSprite;
+        StageController.I.UpdateHp(0);
+        isDead = true;
     }
 }

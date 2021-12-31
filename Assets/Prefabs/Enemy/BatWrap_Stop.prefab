@@ -235,7 +235,7 @@ Animator:
   m_GameObject: {fileID: 8989878386750815225}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 92612f3d915a5bd4b863bd4a0b31f213, type: 2}
+  m_Controller: {fileID: 9100000, guid: 555b8ea6485fbaf4b8600b3ff84858c8, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -274,8 +274,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
-  isFling: 1
   power: 2
+  isFling: 1
   ObstacleLayer:
     serializedVersion: 2
     m_Bits: 0

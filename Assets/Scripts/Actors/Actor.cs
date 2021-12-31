@@ -33,11 +33,7 @@ public class Actor : MonoBehaviour
     protected void DelHp(int damage,SpriteRenderer sp)
     {
         hp -= damage;
-        if (hp <= 0)
-        {
-            HideFromStage();
-        }
-        else
+        if (hp >= 0)
         {
             StartCoroutine(_flashColor(sp));
         }
