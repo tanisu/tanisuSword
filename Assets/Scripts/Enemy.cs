@@ -15,6 +15,7 @@ public class Enemy : Actor
     float lineLength = 0.2f;
     ObjectPool bulletPool;
     Animator anim;
+    bool reStart;
 
     public enum DIR
     {
@@ -27,18 +28,29 @@ public class Enemy : Actor
 
     void Start()
     {
+        
         isObstacles = new bool[(int)DIR.MAX];
         sp = GetComponent<SpriteRenderer>();
         bulletPool = StageController.I.enemyBulletPool;
         anim = GetComponent<Animator>();
+        
     }
 
     
     void Update()
     {
+
         if (StageController.I.isStop)
         {
             anim.speed = 0;
+            reStart = true;
+            return;
+        }
+        if (reStart && !StageController.I.isStop)
+        {
+            Debug.Log("reScroll");
+            anim.speed = 1;
+            reStart = false;
             return;
         }
         
@@ -120,7 +132,11 @@ public class Enemy : Actor
             PoolContent poolObj = collision.GetComponent<PoolContent>();
             int damage = poolObj.GetComponent<BulletController>().power;
             poolObj.HideFromStage();
-            DelHp(damage,sp);
+            DelEnemyHp(damage,sp);
+            if(hp <= 0)
+            {
+                HideFromStage();
+            }
 
         }
     }

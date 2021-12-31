@@ -274,7 +274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
-  power: 2
+  power: 1
   isFling: 1
   ObstacleLayer:
     serializedVersion: 2

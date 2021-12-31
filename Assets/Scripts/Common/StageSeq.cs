@@ -25,19 +25,23 @@ public class StageSeq : ScriptableObject
         public readonly COMMANDTYPE command;
         public readonly float arg1, arg2;
         public readonly uint arg3;
-        public StageData(float _eventPos,string _command, float _x,float _y,uint _type)
+        public readonly uint arg4;
+        public StageData(float _eventPos,string _command, float _x,float _y,uint _type,uint _enemyType)
         {
             eventPos = _eventPos;
             command = commandList[_command];
             arg1 = _x;
             arg2 = _y;
             arg3 = _type;
+            arg4 = _enemyType;
+
         }
     }
     StageData[] stageDatas;
     int stageDataIdx = 0;
     [SerializeField] GameObject[] enemyPrefabs = default;
 
+    //ì«Ç›çûÇ›Ç±Ç±Ç©ÇÁ
     public void Load()
     {
         Dictionary<string, uint> revarr = new Dictionary<string, uint>();
@@ -53,7 +57,7 @@ public class StageSeq : ScriptableObject
         {
             string line = sr.ReadLine();
             string[] cols = line.Split(",");
-            if (cols.Length != 5) continue;
+            if (cols.Length != 6) continue;
 
             stageCsvData.Add(
                 new StageData(
@@ -61,7 +65,9 @@ public class StageSeq : ScriptableObject
                     cols[1],
                     float.Parse(cols[2]),
                     float.Parse(cols[3]),
-                    revarr.ContainsKey(cols[4]) ? revarr[cols[4]] : 0)
+                    revarr.ContainsKey(cols[4]) ? revarr[cols[4]] : 0,
+                    uint.Parse(cols[5])//îÚÇ‘ìGÇ©Ç«Ç§Ç©îªíË
+                    )
                 );
         }
         stageDatas = stageCsvData.OrderBy(i => i.eventPos).ToArray();
@@ -84,7 +90,15 @@ public class StageSeq : ScriptableObject
                     break;
                 case COMMANDTYPE.PUTENEMY:
                     GameObject enemyTmp = Instantiate(enemyPrefabs[stageDatas[stageDataIdx].arg3]);
-                    enemyTmp.transform.parent = StageController.I.enemyPool;
+                    if(stageDatas[stageDataIdx].arg4 <= 0)
+                    {
+                        enemyTmp.transform.parent = StageController.I.enemyFling;
+                    }
+                    else
+                    {
+                        enemyTmp.transform.parent = StageController.I.enemyGround;
+                    }
+                    
                     enemyTmp.transform.localPosition = new Vector3(
                         stageDatas[stageDataIdx].arg1,
                         stageDatas[stageDataIdx].arg2

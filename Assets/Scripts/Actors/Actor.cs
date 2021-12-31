@@ -38,4 +38,21 @@ public class Actor : MonoBehaviour
             StartCoroutine(_flashColor(sp));
         }
     }
+
+    protected void DelEnemyHp(int damage,SpriteRenderer sp)
+    {
+        hp -= damage;
+        if(hp <= 0)
+        {
+            HideFromStage();
+        }
+        else
+        {
+            if(sp != null)
+            {
+                StartCoroutine(_flashColor(sp));
+            }
+            
+        }
+    }
 }

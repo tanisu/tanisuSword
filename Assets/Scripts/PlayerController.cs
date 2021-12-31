@@ -154,9 +154,13 @@ public class PlayerController : Actor
                     }
                 break;
                 case "Sword":
-                    if(shootInterval > minShootInterval)
+                    if((shootInterval - i.powerPoint ) > minShootInterval)
                     {
                         shootInterval -= i.powerPoint;
+                    }
+                    else
+                    {
+                        shootInterval = minShootInterval;
                     }
                 break;
                 case "Shilde":
@@ -164,6 +168,10 @@ public class PlayerController : Actor
                     {
                         hasShilde = true;
                         shilde.SetActive(true);
+                    }
+                    else
+                    {
+                        shilde.GetComponent<Shilde>().Recovery();
                     }
                     break;
             }
@@ -188,11 +196,13 @@ public class PlayerController : Actor
 
     IEnumerator _showMe()
     {
+        GetComponent<BoxCollider2D>().enabled = false;
         yield return new WaitForSeconds(0.9f);
         if (hasShilde)
         {
             shilde.SetActive(true);
         }
+        GetComponent<BoxCollider2D>().enabled = true;
         sp.sortingOrder = 1;
     }
 

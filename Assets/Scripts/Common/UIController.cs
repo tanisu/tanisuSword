@@ -10,8 +10,12 @@ public class UIController : MonoBehaviour
 {
 
     public Slider s;
-    
-    
+    [SerializeField] GameObject gameOverPanel;
+
+    private void Start()
+    {
+        gameOverPanel.SetActive(false);
+    }
     public void UpdateSlider(int hp)
     {
         if (StageController.I.isStop)
@@ -25,5 +29,9 @@ public class UIController : MonoBehaviour
             s.value = hp;
         }
         
+    }
+    public void ViewGameOverPanel()
+    {
+        gameOverPanel.SetActive(true);
     }
 }

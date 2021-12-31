@@ -10,11 +10,6 @@ public class Shilde : Actor
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("House"))
-        {
-            Debug.Log("house");
-            return;
-        }
         if (collision.CompareTag("Enemy") || collision.CompareTag("EnemyBullet"))
         {
             hp--;
@@ -35,5 +30,10 @@ public class Shilde : Actor
                 hp = MaxHp;
             }
         }
+    }
+
+    public void Recovery()
+    {
+        hp = MaxHp;
     }
 }
