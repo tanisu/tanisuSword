@@ -34,7 +34,7 @@ public class PlayerController : Actor
         bulletPool = StageController.I.playerBulletPool;
         sp = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-        
+        isDead = false;
     }
 
     
@@ -138,6 +138,7 @@ public class PlayerController : Actor
             transform.position = collision.gameObject.transform.position;
             shilde.SetActive(false);
             StageController.I.stopScroll();
+            hp = maxHp;
             StageController.I.UpdateHp(maxHp);
             StartCoroutine(_showMe());
         }
@@ -176,7 +177,12 @@ public class PlayerController : Actor
                     break;
             }
             collision.gameObject.SetActive(false);
-            //Destroy(collision.gameObject);
+        }
+
+        if (collision.CompareTag("Goal"))
+        {
+            StageController.I.ViewStageClear();
+            gameObject.SetActive(false);
         }
     }
 
@@ -212,7 +218,7 @@ public class PlayerController : Actor
         if (collision.gameObject.CompareTag("Obstacle") )
         {
 
-            if (isDeadLine)
+            if (isDeadLine && !isDead)
             {
                 _deadMe();
             }
@@ -226,7 +232,7 @@ public class PlayerController : Actor
         if (collision.gameObject.CompareTag("Obstacle"))
         {
             
-            if (isDeadLine)
+            if (isDeadLine && !isDead)
             {
                 _deadMe();
             }
@@ -240,5 +246,11 @@ public class PlayerController : Actor
         sp.sprite = deadSprite;
         StageController.I.UpdateHp(0);
         isDead = true;
+    }
+
+    public void SetUpForStart()
+    {
+        transform.localPosition = new Vector3(0, -4.5f,0);
+        isDead = false;
     }
 }

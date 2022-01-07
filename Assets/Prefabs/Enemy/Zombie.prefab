@@ -121,11 +121,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 3
+  power: 3
+  isFling: 0
   ObstacleLayer:
     serializedVersion: 2
     m_Bits: 64
   speed: 0.5
-  power: 3
   dir: 0
 --- !u!61 &2758733223109266914
 BoxCollider2D:
@@ -137,7 +138,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 6200000, guid: d3b610895d6ebe24f8edab1ae932c27d, type: 2}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.021535873, y: 0.012921572}

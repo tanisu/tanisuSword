@@ -7,8 +7,10 @@ public class ObjectPool : MonoBehaviour
     [SerializeField] PoolContent content = default;
     [SerializeField] int maxCount = 20;
     Queue<PoolContent> objQueue;
-    void Start()
+    void Awake()
     {
+        
+
         objQueue = new Queue<PoolContent>(maxCount);
         for(int i = 0; i < maxCount; ++i)
         {
@@ -20,10 +22,6 @@ public class ObjectPool : MonoBehaviour
     }
 
     
-    void Update()
-    {
-        
-    }
 
     public PoolContent Launch(Vector3 _pos)
     {

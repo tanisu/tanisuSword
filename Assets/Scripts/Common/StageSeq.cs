@@ -44,6 +44,7 @@ public class StageSeq : ScriptableObject
     //読み込みここから
     public void Load()
     {
+        //Debug.Log("読み込み開始");
         Dictionary<string, uint> revarr = new Dictionary<string, uint>();
         for(uint i = 0; i < enemyPrefabs.Length; i++)
         {
@@ -71,6 +72,7 @@ public class StageSeq : ScriptableObject
                 );
         }
         stageDatas = stageCsvData.OrderBy(i => i.eventPos).ToArray();
+        //Debug.Log("読み込み終了");
     }
 
     public void Reset()
@@ -80,13 +82,16 @@ public class StageSeq : ScriptableObject
 
     public void Step(float _stageProgressTime)
     {
+        //Debug.Log("ステップ");
         while (stageDataIdx < stageDatas.Length && 
             stageDatas[stageDataIdx].eventPos <= _stageProgressTime)
         {
+            //Debug.Log("ステップ内");
             switch (stageDatas[stageDataIdx].command)
             {
                 case COMMANDTYPE.SETSPEED:
                     StageController.I.stageSpeed = stageDatas[stageDataIdx].arg1;
+                    //Debug.Log($"シーケンサー：{StageController.I.stageSpeed}");
                     break;
                 case COMMANDTYPE.PUTENEMY:
                     GameObject enemyTmp = Instantiate(enemyPrefabs[stageDatas[stageDataIdx].arg3]);

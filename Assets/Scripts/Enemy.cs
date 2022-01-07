@@ -48,7 +48,6 @@ public class Enemy : Actor
         }
         if (reStart && !StageController.I.isStop)
         {
-            Debug.Log("reScroll");
             anim.speed = 1;
             reStart = false;
             return;
@@ -135,9 +134,18 @@ public class Enemy : Actor
             DelEnemyHp(damage,sp);
             if(hp <= 0)
             {
-                HideFromStage();
+                if (!gameObject.CompareTag("Boss"))
+                {
+                    HideFromStage();
+                }
+                else {
+                    StopCoroutine(coroutine);
+                    sp.enabled = true;
+                    anim.SetBool("isDead", true);
+                    
+                }
+                
             }
-
         }
     }
 

@@ -16,6 +16,8 @@ public class StageController : MonoBehaviour
     [SerializeField] public PlayerController player = default;
     
     [SerializeField] public float stageSpeed;
+    [SerializeField] GoalMapChips goalTile;
+
     float stageProggresTime = 0;
     [SerializeField] UIController ui;
     float tmpStageSpeed;
@@ -25,6 +27,7 @@ public class StageController : MonoBehaviour
     public static StageController I { get => i; }
     public enum PlayStopCodeDef
     {
+        NotDead,
         PlayerDead,
         BossDefeat,
     }
@@ -32,6 +35,8 @@ public class StageController : MonoBehaviour
 
     public bool isStop;
     public bool isPlaying;
+    private bool isIdle;
+
     private void Awake()
     {
         i = GetComponent<StageController>();
@@ -42,26 +47,51 @@ public class StageController : MonoBehaviour
         stageSeq.Load();
         stageSeq.Reset();
         stageProggresTime = 0;
-      //  isPlaying = false;
+        isPlaying = true;
+        isIdle = true;
+        //Debug.Log($"スタート時:{stageSpeed}");
+        StartCoroutine(ShowStagePanel());
+    }
+
+    IEnumerator ShowStagePanel()
+    {
+        yield return new WaitForSeconds(2.0f);
+        ui.HideStartPanel();
+        isIdle = false;
     }
 
 
     void Update()
     {
-       // if (!isPlaying) return;
-        if (player.isDead)
+        if (isIdle)
         {
+            return;
+        }
+        if (player.isDead && isPlaying)
+        {
+            isPlaying = false;
             playStopCode = PlayStopCodeDef.PlayerDead;
             enemyBulletPool.ResetAll();
             stopScroll();
             ui.ViewGameOverPanel();
             return;
         }
-
-
+        if(playStopCode == PlayStopCodeDef.PlayerDead)
+        {
+            return;
+        }
+        
         stageSeq.Step(stageProggresTime);
         stageProggresTime += Time.deltaTime;
-
+        
+        //if(stageSpeed == 0)
+        //{
+        //    Debug.Log($"アップデート内:{stageSpeed}");
+        //    //stageSpeed = 0.3f;
+        //    //Debug.Log($"アップデート後:{stageSpeed}");
+        //}
+        
+ 
         transform.Translate(Vector3.up * Time.deltaTime * stageSpeed);
 
         float x = Input.GetAxisRaw("Horizontal");
@@ -80,8 +110,29 @@ public class StageController : MonoBehaviour
         ui.UpdateSlider(hp);
     }
 
+    public void BossDead()
+    {
+        playStopCode = PlayStopCodeDef.BossDefeat;
+        StartCoroutine(ViewGoalAction());
+    }
+
+    IEnumerator ViewGoalAction()
+    {
+        yield return new WaitForSeconds(0.5f);
+        isStop = true;
+        goalTile.ViewGoal();
+        yield return new WaitForSeconds(0.5f);
+        isStop = false;
+    }
+
+    public void ViewStageClear()
+    {
+        ui.ViewStageClearPanel();
+    }
+
     public void stopScroll()
     {
+        //Debug.Log("StopScroll");
         isStop = true;
         tmpStageSpeed = stageSpeed;
         stageSpeed = 0.0f;
@@ -89,10 +140,12 @@ public class StageController : MonoBehaviour
 
     public void ReScroll()
     {
+        //Debug.Log("ReScroll");
         if (player.isDead)
         {
             return;
         }
+        
         isStop = false;
         stageSpeed = tmpStageSpeed;
     }
@@ -104,7 +157,6 @@ public class StageController : MonoBehaviour
 
     public void Retry()
     {
-        
         SceneManager.LoadScene(0);
     }
 }

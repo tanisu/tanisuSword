@@ -13,6 +13,7 @@ public class BulletController : MonoBehaviour
     {
         poolContent = GetComponent<PoolContent>();
     }
+    
     public void Setting(float angle)
     {
         dx = Mathf.Cos(angle);
@@ -30,6 +31,7 @@ public class BulletController : MonoBehaviour
         
         if(transform.localPosition.y > 6 || transform.localPosition.y < -6 || transform.localPosition.x > 4 || transform.localPosition.x < -4)
         {
+            
             poolContent.HideFromStage();
         }
     }

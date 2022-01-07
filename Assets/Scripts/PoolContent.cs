@@ -13,11 +13,6 @@ public class PoolContent : MonoBehaviour
         gameObject.SetActive(false);
     }
 
-    void Update()
-    {
-        
-    }
-
     public void ShowInStage(Vector3 _pos)
     {
         transform.position = _pos;
@@ -26,7 +21,6 @@ public class PoolContent : MonoBehaviour
 
     public void HideFromStage()
     {
-        //Debug.Assert(gameObject.activeInHierarchy);
         pool.Collect(this);
     }
 

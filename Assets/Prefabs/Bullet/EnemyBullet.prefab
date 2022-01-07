@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 5755165587769358628}
   - component: {fileID: 3269161377601889465}
   - component: {fileID: 9017845402847598148}
-  - component: {fileID: 7808345550480546697}
   - component: {fileID: 163084928330581706}
+  - component: {fileID: 7808345550480546697}
   m_Layer: 0
   m_Name: EnemyBullet
   m_TagString: EnemyBullet
@@ -103,6 +103,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.1
+--- !u!114 &163084928330581706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 612748233008102517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5d4f0455484e0b42b7103c54f4ad278, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &7808345550480546697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,16 +128,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 2
-  attack: 0
---- !u!114 &163084928330581706
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 612748233008102517}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f5d4f0455484e0b42b7103c54f4ad278, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  power: 0

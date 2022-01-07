@@ -13,6 +13,8 @@ TagManager:
   - EnemyBullet
   - Trap
   - DeadLine
+  - Boss
+  - Goal
   layers:
   - Default
   - TransparentFX

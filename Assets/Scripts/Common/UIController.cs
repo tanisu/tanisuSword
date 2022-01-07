@@ -10,7 +10,7 @@ public class UIController : MonoBehaviour
 {
 
     public Slider s;
-    [SerializeField] GameObject gameOverPanel;
+    [SerializeField] GameObject gameOverPanel,stageClearPanel,stageStartPanel;
 
     private void Start()
     {
@@ -33,5 +33,20 @@ public class UIController : MonoBehaviour
     public void ViewGameOverPanel()
     {
         gameOverPanel.SetActive(true);
+    }
+
+    public void ViewStageClearPanel()
+    {
+        stageClearPanel.SetActive(true);
+    }
+
+    public void HideGameOverPanel()
+    {
+        gameOverPanel.SetActive(false);
+    }
+
+    public void HideStartPanel()
+    {
+        stageStartPanel.SetActive(false);
     }
 }

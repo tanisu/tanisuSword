@@ -6,13 +6,8 @@ public class Actor : MonoBehaviour
 {
     
     [SerializeField] protected int hp;
+    protected Coroutine coroutine;
     public int power;
-    private void Start()
-    {
-        
-        
-    }
-
 
     protected IEnumerator _flashColor(SpriteRenderer sp)
     {
@@ -42,17 +37,9 @@ public class Actor : MonoBehaviour
     protected void DelEnemyHp(int damage,SpriteRenderer sp)
     {
         hp -= damage;
-        if(hp <= 0)
-        {
-            HideFromStage();
-        }
-        else
-        {
             if(sp != null)
             {
-                StartCoroutine(_flashColor(sp));
+                coroutine = StartCoroutine(_flashColor(sp));
             }
-            
-        }
     }
 }
