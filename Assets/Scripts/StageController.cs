@@ -55,9 +55,15 @@ public class StageController : MonoBehaviour
 
     IEnumerator ShowStagePanel()
     {
+        SoundManager.I.StopBGM();
+        SoundManager.I.LoopSwitch();
+        SoundManager.I.PlayBGM(BGMSoundData.BGM.INTORO);
         yield return new WaitForSeconds(2.0f);
         ui.HideStartPanel();
         isIdle = false;
+        SoundManager.I.PlayBGM(BGMSoundData.BGM.STAGE);
+        SoundManager.I.LoopSwitch();
+        
     }
 
 
@@ -102,6 +108,7 @@ public class StageController : MonoBehaviour
         if (Input.GetKey(KeyCode.Space))
         {
             player.Shot();
+            
         }
     }
 

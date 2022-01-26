@@ -15,6 +15,7 @@ public class StageSelector : MonoBehaviour
     {
         stageNumber = PlayerPrefs.GetInt("stageNumber");
         _checkClearStages();
+        SoundManager.I.PlayBGM(BGMSoundData.BGM.TITLE);
     }
 
     private void _checkClearStages()

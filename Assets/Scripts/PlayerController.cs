@@ -75,6 +75,7 @@ public class PlayerController : Actor
                 bullet.GetComponent<BulletController>().power = power;
             } 
             interval = shootInterval;
+            SoundManager.I.PlaySE(SESoundData.SE.ATTACK);
         }
     }
 
@@ -110,6 +111,7 @@ public class PlayerController : Actor
                 {
                     _deadMe();
                 }
+                SoundManager.I.PlaySE(SESoundData.SE.DAMAGE);
             }
             else
             {
@@ -140,11 +142,13 @@ public class PlayerController : Actor
             StageController.I.stopScroll();
             hp = maxHp;
             StageController.I.UpdateHp(maxHp);
+            SoundManager.I.PlaySE(SESoundData.SE.POWER_UP);
             StartCoroutine(_showMe());
         }
         if (collision.CompareTag("Item"))
         {
             Items i = collision.GetComponent<Items>();
+            SoundManager.I.PlaySE(SESoundData.SE.ITEM);
             switch (collision.name)
             {
                 

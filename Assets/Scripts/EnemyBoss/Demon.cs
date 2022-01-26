@@ -36,9 +36,16 @@ public class Demon : MonoBehaviour
         anim.SetBool("isAtc", false);
     }
 
+    void DeadStart()
+    {
+        
+        SoundManager.I.PlaySE(SESoundData.SE.BOSS_EXPLOSION);
+    }
+
     void Dead()
     {
         PlayerPrefs.SetInt("stageNumber", 1);
+        
         StageController.I.BossDead();
     }
 }

@@ -127,7 +127,7 @@ public class Enemy : Actor
     {
         if (collision.CompareTag("PlayerBullet"))
         {
-            
+            SoundManager.I.PlaySE(SESoundData.SE.ENEMY_DAMAGE);
             PoolContent poolObj = collision.GetComponent<PoolContent>();
             int damage = poolObj.GetComponent<BulletController>().power;
             poolObj.HideFromStage();

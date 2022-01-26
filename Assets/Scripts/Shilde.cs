@@ -12,6 +12,7 @@ public class Shilde : Actor
     {
         if (collision.CompareTag("Enemy") || collision.CompareTag("EnemyBullet"))
         {
+            SoundManager.I.PlaySE(SESoundData.SE.GUARD);
             hp--;
             if (collision.CompareTag("Enemy"))
             {
