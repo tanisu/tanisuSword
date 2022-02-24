@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &2967216974700246398
+--- !u!1 &1823505746856827220
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,10 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2967216974700246386}
-  - component: {fileID: 2967216974700246387}
-  - component: {fileID: 2967216974700246384}
-  - component: {fileID: 2967216974700246385}
+  - component: {fileID: 1823505746856827224}
+  - component: {fileID: 1823505746856827225}
+  - component: {fileID: 1823505746856827226}
+  - component: {fileID: 1823505746856827227}
   m_Layer: 0
   m_Name: SoundManager
   m_TagString: Untagged
@@ -19,13 +19,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2967216974700246386
+--- !u!4 &1823505746856827224
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2967216974700246398}
+  m_GameObject: {fileID: 1823505746856827220}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -34,38 +34,62 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2967216974700246387
+--- !u!114 &1823505746856827225
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2967216974700246398}
+  m_GameObject: {fileID: 1823505746856827220}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 53e52d3da549a9e4f941d0b4c66afa21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bgmAudioSource: {fileID: 2967216974700246384}
-  seAudioSource: {fileID: 2967216974700246385}
+  bgmAudioSource: {fileID: 1823505746856827226}
+  seAudioSource: {fileID: 1823505746856827227}
   bGMSoundDatas:
   - bgm: 0
     audioClip: {fileID: 8300000, guid: abdee09eec69d344d82a8494ce2bc190, type: 3}
-    volume: 0.553
+    volume: 0.3
+  - bgm: 2
+    audioClip: {fileID: 8300000, guid: ffa381fea5127ee4f9ae490152dc841f, type: 3}
+    volume: 0.45
+  - bgm: 1
+    audioClip: {fileID: 8300000, guid: fb03fde230e702347acb3a28d19a642c, type: 3}
+    volume: 0.28
   SESoundDatas:
   - se: 0
     audioClip: {fileID: 8300000, guid: 2e742c4e69b911646bdfac7499a7e21a, type: 3}
-    volume: 1
+    volume: 0.2
+  - se: 1
+    audioClip: {fileID: 8300000, guid: 4ac3c058dfd4eb043b78f00e95832900, type: 3}
+    volume: 0.32
+  - se: 4
+    audioClip: {fileID: 8300000, guid: 2865da40c006e184294909e6cdd5d1b1, type: 3}
+    volume: 0.6
+  - se: 5
+    audioClip: {fileID: 8300000, guid: 729a5950233ef1b4abd4801f3feb5f4c, type: 3}
+    volume: 0.12
+  - se: 6
+    audioClip: {fileID: 8300000, guid: 77f68bda3f579b8458d698b8318b1fec, type: 3}
+    volume: 0.32
+  - se: 7
+    audioClip: {fileID: 8300000, guid: 30c8036ca63df844b89ce064b53b0a3c, type: 3}
+    volume: 0.2
+  - se: 3
+    audioClip: {fileID: 8300000, guid: 74c612499eb32714f93c62b93eec19b7, type: 3}
+    volume: 0.32
   mastarVolume: 1
   bgmVolume: 1
   seVolume: 1
---- !u!82 &2967216974700246384
+--- !u!82 &1823505746856827226
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2967216974700246398}
+  m_GameObject: {fileID: 1823505746856827220}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
@@ -155,13 +179,13 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &2967216974700246385
+--- !u!82 &1823505746856827227
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2967216974700246398}
+  m_GameObject: {fileID: 1823505746856827220}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}

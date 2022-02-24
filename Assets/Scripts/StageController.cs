@@ -164,6 +164,7 @@ public class StageController : MonoBehaviour
 
     public void Retry()
     {
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

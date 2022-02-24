@@ -15,6 +15,7 @@ TagManager:
   - DeadLine
   - Boss
   - Goal
+  - River
   layers:
   - Default
   - TransparentFX
@@ -54,6 +55,9 @@ TagManager:
     locked: 0
   - name: Character
     uniqueID: 1020418649
+    locked: 0
+  - name: Mask
+    uniqueID: 320799457
     locked: 0
   - name: UI
     uniqueID: 271559857
