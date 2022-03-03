@@ -21,10 +21,11 @@ public class PlayerController : Actor
     [SerializeField] float speed;
     [SerializeField] GameObject shilde;
     [SerializeField] Sprite deadSprite;
+    [SerializeField]bool isInHole;
     public bool isDead;
     [SerializeField] Vector3 smallScale = new Vector3(0.9f,0.9f);
     Vector3 defaultScale = new Vector3(1,1,1);
-    bool isInHole;
+    
     bool isDeadLine;
     bool hasShilde;
     Animator anim;
@@ -117,8 +118,21 @@ public class PlayerController : Actor
             {
                 shilde.GetComponent<Shilde>().isHit = false;
             }
+        }
+
+        if (collision.CompareTag("Boss"))
+        {
+            int damage = collision.gameObject.GetComponent<Enemy>().power;
+            DelHp(damage, sp);
+            if(hp <= 0)
+            {
+                _deadMe();
+            }
+            StageController.I.UpdateHp(hp);
+            SoundManager.I.PlaySE(SESoundData.SE.DAMAGE);
 
         }
+
         if (collision.CompareTag("Trap"))
         {
             switch (collision.name)
@@ -219,7 +233,7 @@ public class PlayerController : Actor
     private void OnCollisionEnter2D(Collision2D collision)
     {
 
-        if (collision.gameObject.CompareTag("Obstacle") )
+        if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("River"))
         {
 
             if (isDeadLine && !isDead)
@@ -233,7 +247,7 @@ public class PlayerController : Actor
     }
     private void OnCollisionStay2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("River"))
         {
             
             if (isDeadLine && !isDead)
@@ -256,5 +270,15 @@ public class PlayerController : Actor
     {
         transform.localPosition = new Vector3(0, -4.5f,0);
         isDead = false;
+    }
+
+    public void EscapeHole()
+    {
+        isInHole = false;
+    }
+
+    public void CatchedHole()
+    {
+        isInHole = true;
     }
 }

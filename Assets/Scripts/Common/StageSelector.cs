@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 public class StageSelector : MonoBehaviour
 {
     private int stageNumber;
-
+    private int selectStage;
     [SerializeField] GameObject[] stageButton;
 
 
@@ -39,6 +39,16 @@ public class StageSelector : MonoBehaviour
 
     private void SelectStage(int stage)
     {
+        selectStage = stage;
+        SceneManager.sceneLoaded += _gameSceneLoaded;
+
         SceneManager.LoadScene($"stage0{stage}");
+    }
+
+    private void _gameSceneLoaded(Scene next, LoadSceneMode mode)
+    {
+        StageController stageController = GameObject.FindWithTag("Stage").GetComponent<StageController>();
+        stageController.currentStage = selectStage;
+        SceneManager.sceneLoaded -= _gameSceneLoaded;
     }
 }

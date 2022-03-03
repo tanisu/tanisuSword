@@ -16,6 +16,7 @@ TagManager:
   - Boss
   - Goal
   - River
+  - Stage
   layers:
   - Default
   - TransparentFX

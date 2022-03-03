@@ -31,6 +31,13 @@ public class Shilde : Actor
                 hp = MaxHp;
             }
         }
+        if (collision.CompareTag("Boss"))
+        {
+            hp = 0;
+            StageController.I.PlayerHasShilde();
+            gameObject.SetActive(false);
+            hp = MaxHp;
+        }
     }
 
     public void Recovery()

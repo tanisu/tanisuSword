@@ -11650,6 +11650,10 @@ PrefabInstance:
       propertyPath: m_FontData.m_Font
       value: 
       objectReference: {fileID: 12800000, guid: c3b0f88c2c877cf4490e6c884296cea1, type: 3}
+    - target: {fileID: 1415675801901987008, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1415675802342181354, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -11746,6 +11750,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: UICanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1415675802581033017, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1733583157640203137, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
       propertyPath: m_AnchorMax.x
       value: 1
@@ -11782,11 +11790,32 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2647838962083603762, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
+      propertyPath: m_Text
+      value: NEXT
+      objectReference: {fileID: 0}
     - target: {fileID: 4985427751099496577, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8540953761981660337, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1224687483}
+    - target: {fileID: 8540953761981660337, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: NextStage
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540953761981660337, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: StageController, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8540953761981660337, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 5186199837436803344, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
 --- !u!1001 &3583838417876422059
 PrefabInstance:
@@ -11801,6 +11830,10 @@ PrefabInstance:
       objectReference: {fileID: 1888802444}
     - target: {fileID: 3583838419070169808, guid: 63b74f3887fd8c24e805386fe69a9944, type: 3}
       propertyPath: goalTile
+      value: 
+      objectReference: {fileID: 1089865301}
+    - target: {fileID: 3583838419070169808, guid: 63b74f3887fd8c24e805386fe69a9944, type: 3}
+      propertyPath: goalPanel
       value: 
       objectReference: {fileID: 1089865301}
     - target: {fileID: 3583838419070169808, guid: 63b74f3887fd8c24e805386fe69a9944, type: 3}
@@ -11853,6 +11886,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3583838419070169810, guid: 63b74f3887fd8c24e805386fe69a9944, type: 3}
       propertyPath: m_Name
+      value: Stage
+      objectReference: {fileID: 0}
+    - target: {fileID: 3583838419070169810, guid: 63b74f3887fd8c24e805386fe69a9944, type: 3}
+      propertyPath: m_TagString
       value: Stage
       objectReference: {fileID: 0}
     m_RemovedComponents: []

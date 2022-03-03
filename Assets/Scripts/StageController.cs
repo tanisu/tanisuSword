@@ -16,12 +16,13 @@ public class StageController : MonoBehaviour
     [SerializeField] public PlayerController player = default;
     
     [SerializeField] public float stageSpeed;
-    [SerializeField] GoalMapChips goalTile;
+    [SerializeField] GoalMapChips goalPanel;
 
     float stageProggresTime = 0;
     [SerializeField] UIController ui;
     float tmpStageSpeed;
-
+    public int currentStage;
+    private int nextStage;
 
     private static StageController i;
     public static StageController I { get => i; }
@@ -49,7 +50,14 @@ public class StageController : MonoBehaviour
         stageProggresTime = 0;
         isPlaying = true;
         isIdle = true;
-        //Debug.Log($"スタート時:{stageSpeed}");
+        if(currentStage == 0)
+        {
+            string currentScene = SceneManager.GetActiveScene().name;
+            int len = currentScene.Length;
+            string currentStr = currentScene.Substring(len - 1);
+            currentStage = int.Parse(currentStr);
+        }
+        nextStage = currentStage + 1;
         StartCoroutine(ShowStagePanel());
     }
 
@@ -90,12 +98,7 @@ public class StageController : MonoBehaviour
         stageSeq.Step(stageProggresTime);
         stageProggresTime += Time.deltaTime;
         
-        //if(stageSpeed == 0)
-        //{
-        //    Debug.Log($"アップデート内:{stageSpeed}");
-        //    //stageSpeed = 0.3f;
-        //    //Debug.Log($"アップデート後:{stageSpeed}");
-        //}
+
         
  
         transform.Translate(Vector3.up * Time.deltaTime * stageSpeed);
@@ -127,7 +130,7 @@ public class StageController : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         isStop = true;
-        goalTile.ViewGoal();
+        goalPanel.ViewGoal();
         yield return new WaitForSeconds(0.5f);
         isStop = false;
     }
@@ -161,6 +164,12 @@ public class StageController : MonoBehaviour
     {
         player.HasShilde();
     }
+
+    public void NextStage()
+    {
+        SceneManager.LoadScene($"stage0{nextStage}");
+    }
+
 
     public void Retry()
     {
