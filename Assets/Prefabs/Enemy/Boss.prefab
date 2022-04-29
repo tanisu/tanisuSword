@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 548083763057569567}
   - component: {fileID: 6870010360920969394}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Demon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -97,7 +97,7 @@ GameObject:
   - component: {fileID: 7600754579021203561}
   - component: {fileID: 7600754579021203560}
   - component: {fileID: 7600754579021203543}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,4 +206,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   speed: 0
+  launchPort: {fileID: 0}
   dir: 0

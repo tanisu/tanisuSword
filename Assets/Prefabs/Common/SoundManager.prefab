@@ -50,36 +50,51 @@ MonoBehaviour:
   seAudioSource: {fileID: 1823505746856827227}
   bGMSoundDatas:
   - bgm: 0
-    audioClip: {fileID: 8300000, guid: abdee09eec69d344d82a8494ce2bc190, type: 3}
-    volume: 0.3
+    audioClip: {fileID: 8300000, guid: 746bf7d14e3b6f145b2c9c0e5c067bdd, type: 3}
+    volume: 1
   - bgm: 2
-    audioClip: {fileID: 8300000, guid: ffa381fea5127ee4f9ae490152dc841f, type: 3}
-    volume: 0.45
+    audioClip: {fileID: 8300000, guid: 701af465a1d913141be289d096b5f3be, type: 3}
+    volume: 1
+  - bgm: 3
+    audioClip: {fileID: 8300000, guid: f1905beede4cbf54d9cb00e787265624, type: 3}
+    volume: 1
   - bgm: 1
-    audioClip: {fileID: 8300000, guid: fb03fde230e702347acb3a28d19a642c, type: 3}
-    volume: 0.28
+    audioClip: {fileID: 8300000, guid: bf1a3054980c1834d82f7c167c06db3e, type: 3}
+    volume: 1
   SESoundDatas:
-  - se: 0
-    audioClip: {fileID: 8300000, guid: 2e742c4e69b911646bdfac7499a7e21a, type: 3}
-    volume: 0.2
   - se: 1
+    audioClip: {fileID: 8300000, guid: 2e742c4e69b911646bdfac7499a7e21a, type: 3}
+    volume: 1
+  - se: 2
     audioClip: {fileID: 8300000, guid: 4ac3c058dfd4eb043b78f00e95832900, type: 3}
-    volume: 0.32
-  - se: 4
-    audioClip: {fileID: 8300000, guid: 2865da40c006e184294909e6cdd5d1b1, type: 3}
-    volume: 0.6
+    volume: 1
   - se: 5
-    audioClip: {fileID: 8300000, guid: 729a5950233ef1b4abd4801f3feb5f4c, type: 3}
-    volume: 0.12
+    audioClip: {fileID: 8300000, guid: 2865da40c006e184294909e6cdd5d1b1, type: 3}
+    volume: 1
   - se: 6
-    audioClip: {fileID: 8300000, guid: 77f68bda3f579b8458d698b8318b1fec, type: 3}
-    volume: 0.32
+    audioClip: {fileID: 8300000, guid: 729a5950233ef1b4abd4801f3feb5f4c, type: 3}
+    volume: 1
   - se: 7
+    audioClip: {fileID: 8300000, guid: 77f68bda3f579b8458d698b8318b1fec, type: 3}
+    volume: 1
+  - se: 8
     audioClip: {fileID: 8300000, guid: 30c8036ca63df844b89ce064b53b0a3c, type: 3}
-    volume: 0.2
-  - se: 3
+    volume: 1
+  - se: 4
     audioClip: {fileID: 8300000, guid: 74c612499eb32714f93c62b93eec19b7, type: 3}
-    volume: 0.32
+    volume: 1
+  - se: 9
+    audioClip: {fileID: 8300000, guid: dffc847a315d4ad4cb311e2cf58b0931, type: 3}
+    volume: 1
+  - se: 0
+    audioClip: {fileID: 8300000, guid: bf1a3054980c1834d82f7c167c06db3e, type: 3}
+    volume: 1
+  - se: 10
+    audioClip: {fileID: 8300000, guid: 90e3cb065aea11141bff745aafe5b5f5, type: 3}
+    volume: 1
+  - se: 11
+    audioClip: {fileID: 8300000, guid: 4aea4c5a61c1a614492fb879c4d5be89, type: 3}
+    volume: 1
   mastarVolume: 1
   bgmVolume: 1
   seVolume: 1

@@ -43,7 +43,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -341,14 +341,20 @@ MonoBehaviour:
   enemyBulletPool: {fileID: 3583838418061877540}
   enemyFling: {fileID: 3583838419539064537}
   enemyGround: {fileID: 0}
+  mask: {fileID: 0}
   stageSeq: {fileID: 11400000, guid: cd96acdf16a70ab409bcce22abbe2eb2, type: 2}
   player: {fileID: 3583838418371088271}
   stageSpeed: 0
-  goalTile: {fileID: 0}
+  goalPanel: {fileID: 0}
+  d_joystick: {fileID: 0}
+  f_joystick: {fileID: 0}
+  fix_joystick: {fileID: 0}
   ui: {fileID: 0}
+  currentStage: 0
   playStopCode: 0
   isStop: 0
   isPlaying: 0
+  canShoot: 0
 --- !u!1 &3583838419539064538
 GameObject:
   m_ObjectHideFlags: 0

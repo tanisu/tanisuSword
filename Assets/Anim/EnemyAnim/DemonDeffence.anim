@@ -248,14 +248,14 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 1.9833333
+  - time: 2
     functionName: Shot
     data: 
-    objectReferenceParameter: {fileID: 11400000, guid: b33fe4dee193e9d4daafb4ffb9b3362c, type: 2}
+    objectReferenceParameter: {fileID: 11400000, guid: 22ed008e975229b408c775fac36eb59c, type: 2}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 2
+  - time: 2.0166667
     functionName: StartWalk
     data: 
     objectReferenceParameter: {fileID: 0}

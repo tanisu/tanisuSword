@@ -22,4 +22,7 @@ public class EnemyBulletPattern : ScriptableObject
 
     [SerializeField] private int power;
     public int Power { get => power; set => power = value; }
+    
+    [SerializeField] private bool isWaitTime;
+    public bool IsWaitTime { get => isWaitTime; set => isWaitTime = value; }
 }

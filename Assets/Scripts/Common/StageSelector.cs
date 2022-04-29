@@ -26,10 +26,14 @@ public class StageSelector : MonoBehaviour
             int stage = stageButton[i].GetComponentInChildren<StageBtn>().stage;
             stageText.text += stage.ToString();
             stageButton[i].GetComponent<Button>().onClick.AddListener(() => { SelectStage(stage); });
-            if (stageNumber >= i)
+            if(i < 3)
             {
                 stageButton[i].GetComponent<Button>().enabled = true;
             }
+            //if (stageNumber >= i)
+            //{
+            //    stageButton[i].GetComponent<Button>().enabled = true;
+            //}
             else
             {
                 stageButton[i].GetComponent<Image>().color = new Color(1,1,1,0.5f);
@@ -41,7 +45,6 @@ public class StageSelector : MonoBehaviour
     {
         selectStage = stage;
         SceneManager.sceneLoaded += _gameSceneLoaded;
-
         SceneManager.LoadScene($"stage0{stage}");
     }
 

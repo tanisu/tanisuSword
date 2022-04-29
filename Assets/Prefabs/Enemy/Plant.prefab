@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7540365108516590222}
   - component: {fileID: 7540365108516590209}
   - component: {fileID: 7540365108516590208}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plant
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -164,4 +164,5 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   speed: 0
+  launchPort: {fileID: 0}
   dir: 0

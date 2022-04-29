@@ -11,13 +11,19 @@ public class StageSeq : ScriptableObject
     public enum COMMANDTYPE
     {
         SETSPEED,
-        PUTENEMY
+        PUTENEMY,
+        LIGHT,
+        STOPBGM,
+        PLAYBOSSBGM
     }
     static readonly Dictionary<string, COMMANDTYPE> commandList =
         new Dictionary<string, COMMANDTYPE>()
         {
             { "SETSPEED",COMMANDTYPE.SETSPEED},
             { "PUTENEMY",COMMANDTYPE.PUTENEMY},
+            { "LIGHT",COMMANDTYPE.LIGHT},
+            { "STOPBGM",COMMANDTYPE.STOPBGM},
+            { "PLAYBOSSBGM",COMMANDTYPE.PLAYBOSSBGM},
         };
     public struct StageData
     {
@@ -89,6 +95,13 @@ public class StageSeq : ScriptableObject
             //Debug.Log("ステップ内");
             switch (stageDatas[stageDataIdx].command)
             {
+                case COMMANDTYPE.LIGHT:
+                    StageController.I.DoLight();
+                    break;
+
+                case COMMANDTYPE.STOPBGM:
+                    SoundManager.I.StopBGM();
+                    break;
                 case COMMANDTYPE.SETSPEED:
                     StageController.I.stageSpeed = stageDatas[stageDataIdx].arg1;
                     //Debug.Log($"シーケンサー：{StageController.I.stageSpeed}");

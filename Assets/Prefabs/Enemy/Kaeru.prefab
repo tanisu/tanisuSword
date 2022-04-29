@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -1136047371642934239}
   - component: {fileID: -3753411719829890813}
   - component: {fileID: 2001776772511117138}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Kaeru
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -126,6 +126,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   speed: 3
+  launchPort: {fileID: 0}
   dir: 0
 --- !u!58 &2001776772511117138
 CircleCollider2D:

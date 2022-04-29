@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class SoundManager : MonoBehaviour
 {
     [SerializeField] AudioSource bgmAudioSource;
@@ -9,6 +10,8 @@ public class SoundManager : MonoBehaviour
 
     [SerializeField] List<BGMSoundData> bGMSoundDatas;
     [SerializeField] List<SESoundData> SESoundDatas;
+
+    
 
     public float mastarVolume = 1;
     public float bgmVolume = 1;
@@ -41,13 +44,25 @@ public class SoundManager : MonoBehaviour
 
     public void StopBGM()
     {
+        
         bgmAudioSource.Stop();
     }
-    
+
     public void LoopSwitch()
     {
-        bgmAudioSource.loop = !bgmAudioSource.loop; 
+        bgmAudioSource.loop = !bgmAudioSource.loop;
     }
+
+    public void ChangeBGMVolumes()
+    {
+        bgmAudioSource.volume = bgmVolume;
+    }
+
+    public void ChangeSEVolumes()
+    {
+        seAudioSource.volume = seVolume;
+    }
+    
 
     public void PlaySE(SESoundData.SE se)
     {
@@ -66,6 +81,7 @@ public class BGMSoundData
         TITLE,
         INTORO,
         STAGE,
+        BOSS,
         GAMEOVER,
 
     }
@@ -81,6 +97,7 @@ public class SESoundData
 {
     public enum SE
     {
+        INTORO,
         ATTACK,
         DAMAGE,
         TRAP,
@@ -88,7 +105,10 @@ public class SESoundData
         BOSS_EXPLOSION,
         POWER_UP,
         ITEM,
-        GUARD
+        GUARD,
+        WARP,
+        SWITCH,
+        BOMWALL
     }
 
     public SE se;

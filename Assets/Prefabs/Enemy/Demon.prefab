@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3588807653881083763}
   - component: {fileID: 8927962415387767470}
   - component: {fileID: 6272412796027393930}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Demon
   m_TagString: Boss
   m_Icon: {fileID: 0}
@@ -168,13 +168,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f3145096b333442b3328cb02c11ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 40
+  hp: 85
   power: 1
   isFling: 1
   ObstacleLayer:
     serializedVersion: 2
     m_Bits: 0
   speed: 0
+  launchPort: {fileID: 0}
   dir: 0
 --- !u!114 &6272412796027393930
 MonoBehaviour:

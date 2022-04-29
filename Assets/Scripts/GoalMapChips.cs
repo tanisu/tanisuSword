@@ -4,18 +4,38 @@ using UnityEngine;
 
 public class GoalMapChips : MonoBehaviour
 {
-    Animator anim;
+    [SerializeField] bool hasAnim;
+    Animator anim;//アニメーションあるかどうか。無い場合はboxcollider2dは最初オフ
     BoxCollider2D bc2d;
 
     private void Start()
     {
-        anim = GetComponent<Animator>();
+        if (hasAnim)
+        {
+            anim = GetComponent<Animator>();
+        }
+        
         bc2d = GetComponent<BoxCollider2D>();
+        if (!hasAnim)
+        {
+            bc2d.enabled = false;
+        }
     }
 
     public void ViewGoal()
     {
-        anim.SetBool("isBossDead",true);
+        SoundManager.I.StopBGM();
+        if (hasAnim)
+        {
+            anim.SetBool("isBossDead", true);
+        }
+        else
+        {
+            GetComponent<SpriteRenderer>().enabled = true;
+            bc2d.enabled = true;
+        }
+
+
         bc2d.isTrigger = true;
     }
 

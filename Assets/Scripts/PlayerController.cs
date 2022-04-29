@@ -22,13 +22,16 @@ public class PlayerController : Actor
     [SerializeField] GameObject shilde;
     [SerializeField] Sprite deadSprite;
     [SerializeField]bool isInHole;
+    
     public bool isDead;
     [SerializeField] Vector3 smallScale = new Vector3(0.9f,0.9f);
     Vector3 defaultScale = new Vector3(1,1,1);
     
     bool isDeadLine;
-    bool hasShilde;
+    public bool hasShilde;
     Animator anim;
+
+
 
     void Start()
     {
@@ -36,6 +39,7 @@ public class PlayerController : Actor
         sp = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         isDead = false;
+        hp = maxHp;
     }
 
     
@@ -85,6 +89,17 @@ public class PlayerController : Actor
         hasShilde = !hasShilde;
     }
 
+    public void SetParams(float _shootInterval ,float _speed,bool _hasShilde)
+    {
+        shootInterval = _shootInterval;
+        speed = _speed;
+        hasShilde = _hasShilde;
+        if (hasShilde)
+        {
+            shilde.SetActive(true);
+        }
+    }
+
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("DeadLine"))
@@ -106,6 +121,7 @@ public class PlayerController : Actor
                 
                 int damage = collision.CompareTag("Enemy") ? collision.gameObject.GetComponent<Enemy>().power : collision.gameObject.GetComponent<BulletController>().power;
                 DelHp(damage, sp);
+                
                 StageController.I.UpdateHp(hp);
 
                 if (hp <= 0)
@@ -193,18 +209,45 @@ public class PlayerController : Actor
                         shilde.GetComponent<Shilde>().Recovery();
                     }
                     break;
+                case "candle":
+                    StageController.I.DoLight(true);
+                    break;
+
+                case "Portion":
+                    StartCoroutine(_toumei());
+                    break;
             }
             collision.gameObject.SetActive(false);
         }
 
+        if (collision.CompareTag("Switch"))
+        {
+            collision.GetComponent<SwitchController>().OnSwitch();
+        }
+
+
         if (collision.CompareTag("Goal"))
         {
+            GameManager.I.currentHasShilde = hasShilde;
+            GameManager.I.currentShootInterval = shootInterval;
+            GameManager.I.currentSpeed = speed;
             StageController.I.ViewStageClear();
             gameObject.SetActive(false);
         }
     }
 
-   
+    IEnumerator _toumei()
+    {
+        anim.SetBool("Toumei", true);
+        gameObject.layer = LayerMask.NameToLayer("Toumei");
+        yield return new WaitForSeconds(6f);
+        anim.SetBool("Toumei", false);
+        anim.SetBool("ToumeiEnd", true);
+        yield return new WaitForSeconds(3f);
+        anim.SetBool("ToumeiEnd", false);
+        gameObject.layer = LayerMask.NameToLayer("Default");
+
+    }
 
     IEnumerator _jump(Collider2D collision)
     {
@@ -259,6 +302,7 @@ public class PlayerController : Actor
 
     private void _deadMe()
     {
+        
         shilde.SetActive(false);
         anim.enabled = false;
         sp.sprite = deadSprite;

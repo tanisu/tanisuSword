@@ -17,6 +17,8 @@ TagManager:
   - Goal
   - River
   - Stage
+  - Swich
+  - Switch
   layers:
   - Default
   - TransparentFX
@@ -27,7 +29,7 @@ TagManager:
   - Obstacle
   - Enemy
   - 
-  - 
+  - Toumei
   - 
   - 
   - 

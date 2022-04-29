@@ -11,6 +11,7 @@ public class UIController : MonoBehaviour
 
     public Slider s;
     [SerializeField] GameObject gameOverPanel,stageClearPanel,stageStartPanel;
+    [SerializeField] Text testText;
 
     private void Start()
     {
@@ -48,5 +49,10 @@ public class UIController : MonoBehaviour
     public void HideStartPanel()
     {
         stageStartPanel.SetActive(false);
+    }
+
+    public void TestText()
+    {
+        testText.text = "stage";
     }
 }

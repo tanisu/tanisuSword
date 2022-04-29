@@ -18,9 +18,9 @@ public class TilemapController : MonoBehaviour
 
     void SetTile()
     {
-        for(float y = -6;y < 6; y += 0.5f)
+        for(float y = -5.5f;y < 6f; y += 0.5f)
         {
-            for(float x = -4;x < 4; x += 0.5f)
+            for(float x = -2.5f;x < 3f; x += 0.5f)
             {
                 GameObject t = Instantiate(blockTile);
                 t.transform.SetParent(transform);

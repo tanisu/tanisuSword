@@ -5,9 +5,10 @@ using UnityEngine;
 public class Enemy : Actor
 {
     [SerializeField] bool isFling;
-    
+    [SerializeField] bool randomTrun;
     [SerializeField] LayerMask ObstacleLayer;
     [SerializeField] float speed;
+    [SerializeField] GameObject launchPort;
     SpriteRenderer sp;
     bool[] isObstacles;
     bool isTurn;
@@ -16,6 +17,7 @@ public class Enemy : Actor
     ObjectPool bulletPool;
     Animator anim;
     bool reStart;
+    bool turnRight;
 
     public enum DIR
     {
@@ -28,7 +30,10 @@ public class Enemy : Actor
 
     void Start()
     {
-        
+        if (randomTrun)
+        {
+            turnRight = Random.Range(0, 2) == 0;
+        }
         isObstacles = new bool[(int)DIR.MAX];
         sp = GetComponent<SpriteRenderer>();
         bulletPool = StageController.I.enemyBulletPool;
@@ -53,7 +58,7 @@ public class Enemy : Actor
             return;
         }
         
-        if ( !isFling)
+        if ( !isFling && !StageController.I.isIdle)
         {
             WalkingMove();
         }
@@ -85,23 +90,46 @@ public class Enemy : Actor
             dir = DIR.DOWN;
             isTurn = false;
 
+
         }
         else
         {
-            if (!isObstacles[(int)DIR.LEFT] && !isTurn)
+            if (!turnRight)
             {
-                dir = DIR.LEFT;
+                if (!isObstacles[(int)DIR.LEFT] && !isTurn)
+                {
+                    dir = DIR.LEFT;
 
+                }
+                else if (isObstacles[(int)DIR.LEFT])
+                {
+                    dir = DIR.RIGHT;
+                    isTurn = true;
+                }
+                else if (isObstacles[(int)DIR.RIGHT])
+                {
+                    isTurn = false;
+                }
             }
-            else if (isObstacles[(int)DIR.LEFT])
+            else
             {
-                dir = DIR.RIGHT;
-                isTurn = true;
+                if (!isObstacles[(int)DIR.RIGHT] && !isTurn)
+                {
+                    dir = DIR.RIGHT;
+
+                }
+                else if (isObstacles[(int)DIR.RIGHT])
+                {
+                    dir = DIR.LEFT;
+                    isTurn = true;
+                }
+                else if (isObstacles[(int)DIR.LEFT])
+                {
+                    isTurn = false;
+                }
+                
             }
-            else if (isObstacles[(int)DIR.RIGHT])
-            {
-                isTurn = false;
-            }
+            
 
         }
 
@@ -162,29 +190,64 @@ public class Enemy : Actor
         {
             openAngle = _o.OpenAngle;
         }
-        for (int i = 0; i < _o.Count; i++)
+
+        if (!_o.IsWaitTime)
+        {
+            for (int i = 0; i < _o.Count; i++)
+            {
+                float d = 0f;
+                if (_o.IsAimPlayer)
+                {
+                    d = openAngle;
+                }
+                else
+                {
+                    d = -Mathf.PI / 2 + ((i - angleOffset) * openAngle * Mathf.Deg2Rad);
+                }
+
+                PoolContent obj = bulletPool.Launch(transform.position + Vector3.up * 0.2f);
+                if (obj != null)
+                {
+                    BulletController bullet = obj.GetComponent<BulletController>();
+                    bullet.speed = _o.Speed;
+                    bullet.power = _o.Power;
+                    bullet.Setting(d);
+                }
+            }
+        }
+        else
+        {
+            StartCoroutine(_waitShot(_o, openAngle,angleOffset));
+        }
+
+    }
+
+    IEnumerator _waitShot(EnemyBulletPattern _o,float _openAngle,float _angleOffset)
+    {
+        for(int i = 0; i < _o.Count; i++)
         {
             float d = 0f;
-            if (_o.IsAimPlayer)
+            d = -Mathf.PI / 2 + ((i - _angleOffset) * _openAngle * Mathf.Deg2Rad);
+            Vector3 port;
+            if (launchPort)
             {
-                d = openAngle ;
+                port = launchPort.transform.position;
             }
             else
             {
-                d = -Mathf.PI / 2 + ((i - angleOffset) * openAngle * Mathf.Deg2Rad);
+                port = transform.position;
             }
-
-            PoolContent obj = bulletPool.Launch(transform.position + Vector3.up * 0.2f);
+            PoolContent obj = bulletPool.Launch(port);
             if (obj != null)
             {
                 BulletController bullet = obj.GetComponent<BulletController>();
                 bullet.speed = _o.Speed;
                 bullet.power = _o.Power;
                 bullet.Setting(d);
+                yield return new WaitForSeconds(0.01f);
             }
         }
-
-
+        
     }
 
 

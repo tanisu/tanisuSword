@@ -154,7 +154,7 @@ GameObject:
   - component: {fileID: 9209732551647565838}
   - component: {fileID: 9209732551647565839}
   - component: {fileID: 9209732551647565833}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -308,17 +308,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9648daa459282ea489e0cfd91f0d393d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 10
+  hp: 0
   power: 1
   shootInterval: 0.5
   minShootInterval: 0.1
   bulletSpeed: 10
   moveLimitY: 4.7
   moveLimitX: 2.5
-  maxHp: 10
+  maxHp: 100
   maxSpeed: 3
-  speed: 1
+  speed: 2
   shilde: {fileID: 1706758531507436697}
   deadSprite: {fileID: 1162032867830542092, guid: e311ce16196c42b43a832b545e2cf3b8, type: 3}
+  isInHole: 0
   isDead: 0
   smallScale: {x: 0.9, y: 0.9, z: 0}
+  hasShilde: 0
