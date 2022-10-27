@@ -153,12 +153,12 @@ public class Enemy : Actor
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("PlayerBullet"))
+        if (collision.CompareTag("PlayerBullet") || collision.CompareTag("Shiled"))
         {
             SoundManager.I.PlaySE(SESoundData.SE.ENEMY_DAMAGE);
             PoolContent poolObj = collision.GetComponent<PoolContent>();
-            int damage = poolObj.GetComponent<BulletController>().power;
-            poolObj.HideFromStage();
+            int damage = poolObj != null ? poolObj.GetComponent<BulletController>().power : collision.GetComponent<Shilde>().power;
+            if(poolObj != null)  poolObj.HideFromStage();
             DelEnemyHp(damage,sp);
             if(hp <= 0)
             {
@@ -170,9 +170,7 @@ public class Enemy : Actor
                     StopCoroutine(coroutine);
                     sp.enabled = true;
                     anim.SetBool("isDead", true);
-                    
                 }
-                
             }
         }
     }

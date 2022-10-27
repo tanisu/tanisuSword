@@ -14,14 +14,11 @@ public class Shilde : Actor
         {
             SoundManager.I.PlaySE(SESoundData.SE.GUARD);
             hp--;
-            if (collision.CompareTag("Enemy"))
-            {
-                collision.GetComponent<Actor>().HideFromStage();
-            }
-            else
+            if (collision.CompareTag("EnemyBullet"))
             {
                 collision.GetComponent<BulletController>().HideFromStage();
             }
+
             isHit = true;
             
             if (hp <= 0)

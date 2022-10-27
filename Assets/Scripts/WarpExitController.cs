@@ -5,6 +5,7 @@ using UnityEngine;
 public class WarpExitController : MonoBehaviour
 {
     [SerializeField] EnemiesController enemies;
+    [SerializeField] bool isStopStage;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -15,6 +16,11 @@ public class WarpExitController : MonoBehaviour
                 enemies.ShowEnemies();
             }
             GetComponent<CircleCollider2D>().enabled = false;
+            if (isStopStage)
+            {
+                StageController.I.stageSpeed = 0f;
+                //StageController.I.stopScroll();
+            }
         }
 
     }

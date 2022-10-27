@@ -7,11 +7,13 @@ public class BulletController : MonoBehaviour
     public float speed;
     public int power;
     float dx, dy;
+    Rigidbody2D rgbd2d;
     PoolContent poolContent;
 
     void Start()
     {
         poolContent = GetComponent<PoolContent>();
+        rgbd2d = GetComponent<Rigidbody2D>();
     }
     
     public void Setting(float angle)
@@ -27,9 +29,11 @@ public class BulletController : MonoBehaviour
     
     void Update()
     {
-        transform.position += new Vector3(dx, dy, 0) * 5 * Time.deltaTime;
+        //transform.position += new Vector3(dx, dy, 0) * 5 * Time.deltaTime;
         
-        if(transform.localPosition.y > 6 || transform.localPosition.y < -6 || transform.localPosition.x > 4 || transform.localPosition.x < -4)
+        rgbd2d.velocity = new Vector3(dx, dy, 0) * 5;
+
+        if (transform.localPosition.y > 6 || transform.localPosition.y < -6 || transform.localPosition.x > 4 || transform.localPosition.x < -4)
         {
             
             poolContent.HideFromStage();

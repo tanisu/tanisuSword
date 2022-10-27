@@ -108,7 +108,10 @@ public class SESoundData
         GUARD,
         WARP,
         SWITCH,
-        BOMWALL
+        BOMWALL,
+        STAFFFALL,
+        STAFFGROUND,
+        Thunder
     }
 
     public SE se;

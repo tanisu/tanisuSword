@@ -94,10 +94,8 @@ public class StageController : MonoBehaviour
 
     void Update()
     {
-        if (isIdle)
-        {
-            return;
-        }
+        if (isIdle) return;
+        
         if (player.isDead && isPlaying)
         {
             if (coroutine != null)
@@ -113,11 +111,10 @@ public class StageController : MonoBehaviour
             
             return;
         }
-        if(playStopCode == PlayStopCodeDef.PlayerDead)
-        {
-            return;
-        }
-        
+
+        if(playStopCode == PlayStopCodeDef.PlayerDead) return;
+
+
         stageSeq.Step(stageProggresTime);
         if (!isStop)
         {
@@ -131,21 +128,22 @@ public class StageController : MonoBehaviour
         float x = 0;
         float y = 0;
 
-
-        if (d_joystick.gameObject.activeSelf == true)
-        {
-            x = d_joystick.Horizontal;
-            y = d_joystick.Vertical;
-        }
-        else if (f_joystick.gameObject.activeSelf == true)
-        {           
-            x = f_joystick.Horizontal;
-            y = f_joystick.Vertical;
-        }else if(fix_joystick.gameObject.activeSelf == true)
-        {
-            x = fix_joystick.Horizontal;
-            y = fix_joystick.Vertical;
-        }
+        x = Input.GetAxisRaw("Horizontal");
+        y = Input.GetAxisRaw("Vertical");
+        //if (d_joystick.gameObject.activeSelf == true)
+        //{
+        //    x = d_joystick.Horizontal;
+        //    y = d_joystick.Vertical;
+        //}
+        //else if (f_joystick.gameObject.activeSelf == true)
+        //{           
+        //    x = f_joystick.Horizontal;
+        //    y = f_joystick.Vertical;
+        //}else if(fix_joystick.gameObject.activeSelf == true)
+        //{
+        //    x = fix_joystick.Horizontal;
+        //    y = fix_joystick.Vertical;
+        //}
 
         player.Move(new Vector3(x,y,0));
 
@@ -153,9 +151,9 @@ public class StageController : MonoBehaviour
         {
             player.Shot();
         }
-        
-        
     }
+
+
 
     public void UpdateHp(int hp)
     {

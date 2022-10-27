@@ -23,13 +23,16 @@ public class BreakWall : MonoBehaviour
     IEnumerator _breakWall()
     {
         SoundManager.I.PlaySE(SESoundData.SE.BOMWALL);
+        gameObject.layer = 0;
         for (int i = 0; i < 5; i++)
         {
+            
             sp.sprite = bomSprites[i % 2];
             yield return new WaitForSeconds(0.1f);
         }
         sp.sprite = brokenSprite;
         bc2d.enabled = false;
+        
         
     }
 }

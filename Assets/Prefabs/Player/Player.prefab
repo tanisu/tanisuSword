@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 9209732552112038520}
   m_Layer: 0
   m_Name: Shilde_Player
-  m_TagString: Untagged
+  m_TagString: Shiled
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,7 +116,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 5
-  power: 0
+  power: 1
   isHit: 0
   MaxHp: 5
 --- !u!50 &9209732552112038520
@@ -154,6 +154,7 @@ GameObject:
   - component: {fileID: 9209732551647565838}
   - component: {fileID: 9209732551647565839}
   - component: {fileID: 9209732551647565833}
+  - component: {fileID: 2534860402661231173}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -262,7 +263,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.009411454, y: -0.014117241}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -310,17 +311,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   power: 1
+  blockLayer:
+    serializedVersion: 2
+    m_Bits: 64
   shootInterval: 0.5
   minShootInterval: 0.1
   bulletSpeed: 10
   moveLimitY: 4.7
   moveLimitX: 2.5
-  maxHp: 100
-  maxSpeed: 3
-  speed: 2
+  maxHp: 20
+  maxSpeed: 4
+  speed: 1.5
   shilde: {fileID: 1706758531507436697}
   deadSprite: {fileID: 1162032867830542092, guid: e311ce16196c42b43a832b545e2cf3b8, type: 3}
   isInHole: 0
-  isDead: 0
   smallScale: {x: 0.9, y: 0.9, z: 0}
+  isDead: 0
   hasShilde: 0
+  isDeadLine: 0
+  isObstacle: 0
+  isHitting: 0
+--- !u!58 &2534860402661231173
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9209732551647565875}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.19

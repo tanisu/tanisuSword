@@ -16,7 +16,7 @@ public class Actor : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             sp.enabled = false;
-            yield return new WaitForSeconds(0.01f);
+            yield return new WaitForSeconds(0.05f);
             sp.enabled = true;
             yield return new WaitForSeconds(0.05f);
         }

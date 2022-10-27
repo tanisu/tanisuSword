@@ -95,6 +95,15 @@ MonoBehaviour:
   - se: 11
     audioClip: {fileID: 8300000, guid: 4aea4c5a61c1a614492fb879c4d5be89, type: 3}
     volume: 1
+  - se: 12
+    audioClip: {fileID: 8300000, guid: c9bb669c767366d4da25ee2166bbdc69, type: 3}
+    volume: 1
+  - se: 13
+    audioClip: {fileID: 8300000, guid: 4af639aee60891444bef82570884e83c, type: 3}
+    volume: 1
+  - se: 14
+    audioClip: {fileID: 8300000, guid: 523b3589c74bff84d86260dfc9d21c94, type: 3}
+    volume: 1
   mastarVolume: 1
   bgmVolume: 1
   seVolume: 1

@@ -5,31 +5,30 @@ using DG.Tweening;
 
 public class PlayerController : Actor
 {
-    private ObjectPool bulletPool;
-    private float interval = 0;//‚±‚êˆÈ‰º‚Ì‚Æ‚«‚µ‚©”­ŽË‚Å‚«‚È‚¢
-    
-    private SpriteRenderer sp;
+    ObjectPool bulletPool;
+    float interval = 0;//‚±‚êˆÈ‰º‚Ì‚Æ‚«‚µ‚©”­ŽË‚Å‚«‚È‚¢
+    SpriteRenderer sp;
+    Vector3 defaultScale = new Vector3(1, 1, 1);
+    Animator anim;
+    Rigidbody2D rgbd2d;
+
+    [SerializeField] LayerMask blockLayer;
     [SerializeField] float shootInterval;//”­ŽËŠÔŠu
     [SerializeField] float minShootInterval;
     [SerializeField] float bulletSpeed = 10f;
     [SerializeField] float moveLimitY = 4.5f;
     [SerializeField] float moveLimitX = 2.5f;
-
-    
     [SerializeField] int maxHp;
     [SerializeField] float maxSpeed;
     [SerializeField] float speed;
     [SerializeField] GameObject shilde;
     [SerializeField] Sprite deadSprite;
     [SerializeField]bool isInHole;
+    [SerializeField] Vector3 smallScale = new Vector3(0.9f, 0.9f);
+    public bool isDead, hasShilde, isDeadLine, isObstacle,isHitting;
     
-    public bool isDead;
-    [SerializeField] Vector3 smallScale = new Vector3(0.9f,0.9f);
-    Vector3 defaultScale = new Vector3(1,1,1);
     
-    bool isDeadLine;
-    public bool hasShilde;
-    Animator anim;
+    
 
 
 
@@ -38,7 +37,9 @@ public class PlayerController : Actor
         bulletPool = StageController.I.playerBulletPool;
         sp = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+        rgbd2d = GetComponent<Rigidbody2D>();
         isDead = false;
+        isObstacle = false;
         hp = maxHp;
     }
 
@@ -48,29 +49,63 @@ public class PlayerController : Actor
         interval -= Time.deltaTime;
         if (isInHole)
         {
-            transform.position -= new Vector3(0,StageController.I.stageSpeed) * Time.deltaTime;
+            transform.position -= new Vector3(0, StageController.I.stageSpeed) * Time.deltaTime;
         }
+        if (isHitting || isInHole)
+        {
+            
+            isObstacle = _checkFrontObstacle();
+        }
+        else
+        {
+            isObstacle = false;
+        }
+
+
+
+        if (isObstacle && isDeadLine)
+        {
+            _deadMe();
+        }
+
+
+
+
+    }
+
+    bool _checkFrontObstacle()
+    {
+        Vector2 topStartRayPos = transform.position + (transform.up * 0.1f);
+        Vector2 topEndRayPos = transform.position + (transform.up * 0.22f);
+        Debug.DrawLine(topStartRayPos, topEndRayPos,Color.green);
+        RaycastHit2D hit = Physics2D.Linecast(topStartRayPos, topEndRayPos,blockLayer);
+
+        return hit;
     }
 
     public void Move(Vector3 _moveVec)
     {
-        if (StageController.I.isStop || isInHole)
-        {
-            return;
-        }
-        transform.Translate(_moveVec * speed * Time.deltaTime);
+        if (StageController.I.isStop || isInHole) return;
+        
+        
+        
+        rgbd2d.velocity = _moveVec.normalized * speed;
+        
         Vector3 nowPos = transform.localPosition;
         nowPos.x = Mathf.Clamp(nowPos.x, -moveLimitX, moveLimitX);
         nowPos.y = Mathf.Clamp(nowPos.y, -moveLimitY, moveLimitY);
         transform.localPosition = nowPos;
     }
 
+    void _stopMove()
+    {
+        rgbd2d.velocity = Vector3.zero;
+    }
+
     public void Shot()
     {
-        if (StageController.I.isStop || isInHole)
-        {
-            return;
-        }
+        if (StageController.I.isStop || isInHole) return;
+  
         if (interval <= 0)
         {
             PoolContent bullet = bulletPool.Launch(transform.position + Vector3.up * 0.1f);
@@ -120,15 +155,7 @@ public class PlayerController : Actor
             {
                 
                 int damage = collision.CompareTag("Enemy") ? collision.gameObject.GetComponent<Enemy>().power : collision.gameObject.GetComponent<BulletController>().power;
-                DelHp(damage, sp);
-                
-                StageController.I.UpdateHp(hp);
-
-                if (hp <= 0)
-                {
-                    _deadMe();
-                }
-                SoundManager.I.PlaySE(SESoundData.SE.DAMAGE);
+                _damaged(damage);
             }
             else
             {
@@ -139,14 +166,13 @@ public class PlayerController : Actor
         if (collision.CompareTag("Boss"))
         {
             int damage = collision.gameObject.GetComponent<Enemy>().power;
-            DelHp(damage, sp);
-            if(hp <= 0)
-            {
-                _deadMe();
-            }
-            StageController.I.UpdateHp(hp);
-            SoundManager.I.PlaySE(SESoundData.SE.DAMAGE);
+            _damaged(damage);
 
+        }
+        if (collision.CompareTag("Thunder"))
+        {
+            int damage = collision.gameObject.GetComponent<Thunder>().power;
+            _damaged(damage);
         }
 
         if (collision.CompareTag("Trap"))
@@ -154,6 +180,7 @@ public class PlayerController : Actor
             switch (collision.name)
             {
                 case "Hole":
+                    _stopMove();
                     transform.position = collision.gameObject.transform.position;
                     transform.localScale = smallScale;
                     isInHole = true;
@@ -164,7 +191,7 @@ public class PlayerController : Actor
         }
         if (collision.CompareTag("House"))
         {
-            
+            _stopMove();
             sp.sortingOrder = -1;
             collision.gameObject.GetComponent<BoxCollider2D>().enabled = false;
             transform.position = collision.gameObject.transform.position;
@@ -236,6 +263,17 @@ public class PlayerController : Actor
         }
     }
 
+    private void _damaged(int _damage)
+    {
+        DelHp(_damage, sp);
+        if (hp <= 0)
+        {
+            _deadMe();
+        }
+        StageController.I.UpdateHp(hp);
+        SoundManager.I.PlaySE(SESoundData.SE.DAMAGE);
+    }
+
     IEnumerator _toumei()
     {
         anim.SetBool("Toumei", true);
@@ -249,14 +287,19 @@ public class PlayerController : Actor
 
     }
 
-    IEnumerator _jump(Collider2D collision)
+    IEnumerator _jump(Collider2D collision = null)
     {
+
         yield return new WaitForSeconds(1.5f);
-        GetComponent<BoxCollider2D>().enabled = false;
-        transform.DOLocalJump(transform.localPosition,0.5f,1,0.5f).SetLink(gameObject).OnComplete(()=> {
-            GetComponent<BoxCollider2D>().enabled = true;
-        });
+        Vector2 startPos = transform.localPosition;
+        rgbd2d.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+        rgbd2d.AddForce(Vector2.up * 9f, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.1f);
+        rgbd2d.collisionDetectionMode = CollisionDetectionMode2D.Discrete;
+        rgbd2d.velocity = Vector3.zero;
+
         transform.localScale = defaultScale;
+        transform.localPosition = startPos;
         collision.gameObject.SetActive(false);
         isInHole = false;
     }
@@ -278,31 +321,20 @@ public class PlayerController : Actor
 
         if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("River"))
         {
-
-            if (isDeadLine && !isDead)
-            {
-                _deadMe();
-            }
-            
-            
-            
+            isHitting = true;
         }
     }
-    private void OnCollisionStay2D(Collision2D collision)
+    private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("River"))
-        {
-            
-            if (isDeadLine && !isDead)
-            {
-                _deadMe();
-            }
-        }
+        //if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("River"))
+        //{
+            isHitting = false;
+        //}
     }
 
     private void _deadMe()
     {
-        
+        _stopMove();
         shilde.SetActive(false);
         anim.enabled = false;
         sp.sprite = deadSprite;
@@ -323,6 +355,7 @@ public class PlayerController : Actor
 
     public void CatchedHole()
     {
+        _stopMove();
         isInHole = true;
     }
 }
