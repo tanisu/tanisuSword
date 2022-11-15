@@ -25,12 +25,22 @@ public class BossBase : MonoBehaviour
     {
         StageController.I.canShoot = false;
         SoundManager.I.PlaySE(SESoundData.SE.BOSS_EXPLOSION);
+
     }
+
+    
 
     protected void Dead()
     {
+        
         PlayerPrefs.SetInt("stageNumber", StageController.I.currentStage);
 
         StageController.I.BossDead();
+    }
+
+    protected void Dead_C()
+    {
+        StageController.I.canShoot = true;
+        StageController.I.ReScroll(true);
     }
 }

@@ -16,8 +16,8 @@ public class SoundManager : MonoBehaviour
     public float mastarVolume = 1;
     public float bgmVolume = 1;
     public float seVolume = 1;
-
-
+    private float beforeVolume;
+    private bool isFadeOut;
     public static SoundManager I { get; private set; }
 
     private void Awake()
@@ -37,7 +37,15 @@ public class SoundManager : MonoBehaviour
     {
         BGMSoundData data = bGMSoundDatas.Find(data => data.bgm == bgm);
         bgmAudioSource.clip = data.audioClip;
-        bgmAudioSource.volume = data.volume * bgmVolume * mastarVolume;
+        if (isFadeOut)
+        {
+            bgmAudioSource.volume = beforeVolume;
+        }
+        else
+        {
+            bgmAudioSource.volume = data.volume * bgmVolume * mastarVolume;
+        }
+        
         
         bgmAudioSource.Play();
     }
@@ -62,7 +70,24 @@ public class SoundManager : MonoBehaviour
     {
         seAudioSource.volume = seVolume;
     }
+
+    public void FadeOutBGM()
+    {
+        isFadeOut = true;
+        beforeVolume = bgmAudioSource.volume;
+        StartCoroutine(_fadeOutBGM());
+    }
     
+
+    IEnumerator _fadeOutBGM()
+    {
+        while(bgmAudioSource.volume != 0f)
+        {
+            bgmAudioSource.volume -= 0.1f;
+            yield return new WaitForSeconds(0.3f);
+        }
+        StopBGM();
+    }
 
     public void PlaySE(SESoundData.SE se)
     {
@@ -83,6 +108,11 @@ public class BGMSoundData
         STAGE,
         BOSS,
         GAMEOVER,
+        STAGECLEAR,
+        FAKEEND,
+        LASTBOSS,
+        SADENDING,
+
 
     }
 

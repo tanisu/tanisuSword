@@ -7,6 +7,9 @@ public class Spider : BossBase
 {
     [SerializeField] Net net;
     float xLimit = 1.9f;
+    const float DEFAULTY = 2.5f;
+    float retrunY = 2.5f;
+    float yLimit = 0f;
     Animator anim;
     public bool isAttack;
     int attackCount = 0;
@@ -42,6 +45,7 @@ public class Spider : BossBase
     public void IsDead()
     {
         tween.Kill();
+        DeadStart();
     }
     
     public void IdleEnd()
@@ -120,6 +124,9 @@ public class Spider : BossBase
 
     public void CatchPlayer(Vector3 netPos)
     {
+        
+
+
         Vector3 beforePos = transform.position;
         isAttack = true;
         anim.SetBool("Attack", true);
@@ -127,11 +134,23 @@ public class Spider : BossBase
         anim.SetBool("Left", false);
         anim.SetBool("Right", false);
 
+        retrunY = retrunY > yLimit ? retrunY - 0.5f : DEFAULTY;
+
+        //if(retrunY > yLimit)
+        //{
+        //    retrunY -= 0.5f;
+        //}
+        //else
+        //{
+        //    retrunY = DEFAULTY;
+        //}
+
         tween =  transform.DOMove(netPos, 0.53f).SetLink(gameObject).OnComplete(()=> {
-            tween = transform.DOMove(beforePos, 0.6f).SetLink(gameObject).OnComplete(()=> {
+            tween = transform.DOLocalMove(new Vector3(0,retrunY), 0.6f).SetLink(gameObject).OnComplete(()=> {
                 
                 anim.SetBool("Attack", false);
-                
+                direction = (DIRECTION)Random.Range(1, 3);
+                //Debug.Log(direction);
                 IdleEnd();
                 isAttack = false;
             });

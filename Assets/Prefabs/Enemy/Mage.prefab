@@ -126,7 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f3145096b333442b3328cb02c11ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 25
+  hp: 100
   power: 3
   isFling: 0
   randomTrun: 0
@@ -192,6 +192,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8945308987190998677}
     m_Modifications:
+    - target: {fileID: 1791885730301531713, guid: 6ea4a53fb5d3d634983f54ce65d2eec5, type: 3}
+      propertyPath: power
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8207589408820445844, guid: 6ea4a53fb5d3d634983f54ce65d2eec5, type: 3}
       propertyPath: m_Name
       value: thunder (2)
@@ -267,6 +271,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8945308987190998677}
     m_Modifications:
+    - target: {fileID: 1791885730301531713, guid: 6ea4a53fb5d3d634983f54ce65d2eec5, type: 3}
+      propertyPath: power
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8207589408820445844, guid: 6ea4a53fb5d3d634983f54ce65d2eec5, type: 3}
       propertyPath: m_Name
       value: thunder
@@ -346,6 +354,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8945308987190998677}
     m_Modifications:
+    - target: {fileID: 1791885730301531713, guid: 6ea4a53fb5d3d634983f54ce65d2eec5, type: 3}
+      propertyPath: power
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8207589408820445844, guid: 6ea4a53fb5d3d634983f54ce65d2eec5, type: 3}
       propertyPath: m_Name
       value: thunder (4)
@@ -421,6 +433,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8945308987190998677}
     m_Modifications:
+    - target: {fileID: 1791885730301531713, guid: 6ea4a53fb5d3d634983f54ce65d2eec5, type: 3}
+      propertyPath: power
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8207589408820445844, guid: 6ea4a53fb5d3d634983f54ce65d2eec5, type: 3}
       propertyPath: m_Name
       value: thunder (5)
@@ -496,6 +512,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8945308987190998677}
     m_Modifications:
+    - target: {fileID: 1791885730301531713, guid: 6ea4a53fb5d3d634983f54ce65d2eec5, type: 3}
+      propertyPath: power
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8207589408820445844, guid: 6ea4a53fb5d3d634983f54ce65d2eec5, type: 3}
       propertyPath: m_Name
       value: thunder (1)
@@ -571,6 +591,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8945308987190998677}
     m_Modifications:
+    - target: {fileID: 1791885730301531713, guid: 6ea4a53fb5d3d634983f54ce65d2eec5, type: 3}
+      propertyPath: power
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8207589408820445844, guid: 6ea4a53fb5d3d634983f54ce65d2eec5, type: 3}
       propertyPath: m_Name
       value: thunder (3)

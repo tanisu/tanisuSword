@@ -20,6 +20,9 @@ public class StageController : MonoBehaviour
     [SerializeField] DynamicJoystick d_joystick;
     [SerializeField] FloatingJoystick f_joystick;
     [SerializeField] FixedJoystick  fix_joystick;
+    [SerializeField] GameObject rain;
+    [SerializeField] TilemapController tilemap;
+    [SerializeField] FakeEndingController fakeEnd;
 
     float stageProggresTime = 0;
     [SerializeField] UIController ui;
@@ -39,7 +42,7 @@ public class StageController : MonoBehaviour
     }
     public PlayStopCodeDef playStopCode;
 
-    public bool isStop, isPlaying,canShoot;
+    public bool isStop, isPlaying,canShoot,isStopOnly;
     
     public bool isIdle { get; private set; }
 
@@ -70,7 +73,7 @@ public class StageController : MonoBehaviour
         }
         
         nextStage = currentStage + 1;
-
+        Debug.Log(nextStage);
         StartCoroutine(ShowStagePanel());
         canShoot = true;
     }
@@ -116,10 +119,11 @@ public class StageController : MonoBehaviour
 
 
         stageSeq.Step(stageProggresTime);
-        if (!isStop)
+        if (!isStop && !isStopOnly)
         {
             stageProggresTime += Time.deltaTime;
         }
+
         
  
         transform.Translate(Vector3.up * Time.deltaTime * stageSpeed);
@@ -128,8 +132,11 @@ public class StageController : MonoBehaviour
         float x = 0;
         float y = 0;
 
+        
         x = Input.GetAxisRaw("Horizontal");
         y = Input.GetAxisRaw("Vertical");
+        
+        
         //if (d_joystick.gameObject.activeSelf == true)
         //{
         //    x = d_joystick.Horizontal;
@@ -145,7 +152,11 @@ public class StageController : MonoBehaviour
         //    y = fix_joystick.Vertical;
         //}
 
-        player.Move(new Vector3(x,y,0));
+
+
+        player.Move(new Vector3(x, y, 0));
+
+        
 
         if (canShoot)
         {
@@ -162,17 +173,30 @@ public class StageController : MonoBehaviour
 
     public void BossDead()
     {
+        
         playStopCode = PlayStopCodeDef.BossDefeat;
         StartCoroutine(ViewGoalAction());
     }
 
     IEnumerator ViewGoalAction()
     {
+        
         yield return new WaitForSeconds(0.5f);
-        isStop = true;
+        SoundManager.I.LoopSwitch();
+        SoundManager.I.PlayBGM(BGMSoundData.BGM.STAGECLEAR);
+        
+        
+        
+        yield return new WaitForSeconds(6.9f);
+        SoundManager.I.StopBGM();
+        SoundManager.I.LoopSwitch();
+        yield return new WaitForSeconds(0.5f);
+
         goalPanel.ViewGoal();
         yield return new WaitForSeconds(0.5f);
-        isStop = false;
+        
+        
+        
     }
 
     public void ViewStageClear()
@@ -180,23 +204,43 @@ public class StageController : MonoBehaviour
         ui.ViewStageClearPanel();
     }
 
-    public void stopScroll()
+    public void stopScroll(bool _only = false)
     {
+        if (!_only)
+        {
+            isStop = true;
+        }
+        else
+        {
+            isStopOnly = true;
+        }
         
-        isStop = true;
+        
         tmpStageSpeed = stageSpeed;
         stageSpeed = 0.0f;
     }
 
-    public void ReScroll()
+    
+
+    public void ReScroll(bool _only = false)
     {
         
         if (player.isDead)
         {
             return;
         }
+        if (!_only)
+        {
+            isStop = false;
+        }
+        else
+        {
+            
+            SoundManager.I.PlayBGM(BGMSoundData.BGM.STAGE);
+            isStopOnly = false;
+            canShoot = true;
+        }
         
-        isStop = false;
         stageSpeed = tmpStageSpeed;
     }
 
@@ -207,8 +251,13 @@ public class StageController : MonoBehaviour
 
     public void NextStage()
     {
+
         SceneManager.LoadScene($"stage0{nextStage}");
+
+
     }
+
+
 
 
     public void Retry()
@@ -217,9 +266,36 @@ public class StageController : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
+    public void ToTitle()
+    {
+        GameManager.I.ResetParams();
+        SceneManager.LoadScene("Title");
+    }
+
     public void DoLight(bool domask = false)
     {
         coroutine = StartCoroutine(_light(domask));
+    }
+
+    public void StopRain()
+    {
+        RainController[] rains = rain.GetComponentsInChildren<RainController>();
+        BGController[] bGs = tilemap.GetComponentsInChildren<BGController>();
+        foreach(BGController bg in bGs)
+        {
+            bg.ChangeColor();
+        }
+        foreach(RainController _rain in rains)
+        {
+            _rain.StopRain();
+        }
+        SoundManager.I.FadeOutBGM();
+    }
+
+
+    public void FakeEndStart()
+    {
+        fakeEnd.gameObject.SetActive(true);
     }
 
     IEnumerator _light(bool _domask)

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfca041267d3f0548924ffe2fe16d976, type: 3}
+  m_Name: stage04
+  m_EditorClassIdentifier: 
+  filename: stage04
+  enemyPrefabs:
+  - {fileID: 7540365108516590211, guid: e1170ba24e1a89343b35e0d7955b3367, type: 3}
+  - {fileID: 6260538920688793694, guid: 2252d90a72730324cbf78f4ca9f54510, type: 3}
+  - {fileID: 6260538920688793694, guid: f3797415fd30f524f86ff1c60ac70bb2, type: 3}
+  - {fileID: 6260538920688793694, guid: f74b930c6470cb74f920d3a012e24530, type: 3}
+  - {fileID: 8989878386750815225, guid: 07a6c1ba9af446b419b3203b3d8e7bc4, type: 3}
+  - {fileID: 3774563486503972503, guid: e0c9f372c736fbe44a7b9a905c407665, type: 3}
+  - {fileID: 6935157354741205107, guid: e8b944cd88eb9414c93c19605908b8f4, type: 3}
+  - {fileID: 8945308987190998678, guid: 5b71ffeaad6a0d142b6453e65a7a05e4, type: 3}

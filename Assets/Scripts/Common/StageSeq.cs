@@ -14,7 +14,11 @@ public class StageSeq : ScriptableObject
         PUTENEMY,
         LIGHT,
         STOPBGM,
-        PLAYBOSSBGM
+        PLAYBOSSBGM,
+        STOP,
+        STOPSHOOT,
+        FAKEEND,
+        FAKEEND2ND
     }
     static readonly Dictionary<string, COMMANDTYPE> commandList =
         new Dictionary<string, COMMANDTYPE>()
@@ -24,6 +28,10 @@ public class StageSeq : ScriptableObject
             { "LIGHT",COMMANDTYPE.LIGHT},
             { "STOPBGM",COMMANDTYPE.STOPBGM},
             { "PLAYBOSSBGM",COMMANDTYPE.PLAYBOSSBGM},
+            { "STOP",COMMANDTYPE.STOP},
+            { "STOPSHOOT",COMMANDTYPE.STOPSHOOT},
+            { "FAKEEND",COMMANDTYPE.FAKEEND},
+            { "FAKEEND2ND",COMMANDTYPE.FAKEEND2ND},
         };
     public struct StageData
     {
@@ -121,6 +129,19 @@ public class StageSeq : ScriptableObject
                         stageDatas[stageDataIdx].arg1,
                         stageDatas[stageDataIdx].arg2
                         );
+                    break;
+                case COMMANDTYPE.STOP:
+                    StageController.I.stopScroll(true);
+                    break;
+
+                case COMMANDTYPE.STOPSHOOT:
+                    StageController.I.canShoot = false;
+                    break;
+                case COMMANDTYPE.FAKEEND:
+                    StageController.I.StopRain();
+                    break;
+                case COMMANDTYPE.FAKEEND2ND:
+                    StageController.I.FakeEndStart();
                     break;
             }
             ++stageDataIdx;

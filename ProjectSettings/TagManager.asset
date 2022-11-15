@@ -21,6 +21,7 @@ TagManager:
   - Switch
   - Shiled
   - Thunder
+  - BossC
   layers:
   - Default
   - TransparentFX

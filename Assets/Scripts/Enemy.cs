@@ -162,13 +162,15 @@ public class Enemy : Actor
             DelEnemyHp(damage,sp);
             if(hp <= 0)
             {
-                if (!gameObject.CompareTag("Boss"))
+                if (!gameObject.CompareTag("Boss") )
                 {
+                    
                     HideFromStage();
                 }
                 else {
                     StopCoroutine(coroutine);
                     sp.enabled = true;
+                    
                     anim.SetBool("isDead", true);
                 }
             }
