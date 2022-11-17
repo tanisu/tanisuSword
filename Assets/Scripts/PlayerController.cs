@@ -93,7 +93,7 @@ public class PlayerController : Actor
         
         Vector3 nowPos = transform.localPosition;
         nowPos.x = Mathf.Clamp(nowPos.x, -moveLimitX, moveLimitX);
-        nowPos.y = Mathf.Clamp(nowPos.y, -moveLimitY, moveLimitY);
+        nowPos.y = Mathf.Clamp(nowPos.y, -moveLimitY, 3.7f);
         transform.localPosition = nowPos;
     }
 

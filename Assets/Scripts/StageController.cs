@@ -187,9 +187,9 @@ public class StageController : MonoBehaviour
         
         
         
-        yield return new WaitForSeconds(6.9f);
-        SoundManager.I.StopBGM();
-        SoundManager.I.LoopSwitch();
+        //yield return new WaitForSeconds(6.9f);
+        //SoundManager.I.StopBGM();
+        //SoundManager.I.LoopSwitch();
         yield return new WaitForSeconds(0.5f);
 
         goalPanel.ViewGoal();

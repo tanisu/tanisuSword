@@ -9,6 +9,7 @@ public class Enemy : Actor
     [SerializeField] LayerMask ObstacleLayer;
     [SerializeField] float speed;
     [SerializeField] GameObject launchPort;
+    Sprite deadSprite;
     SpriteRenderer sp;
     bool[] isObstacles;
     bool isTurn;
@@ -18,6 +19,8 @@ public class Enemy : Actor
     Animator anim;
     bool reStart;
     bool turnRight;
+    
+
 
     public enum DIR
     {
@@ -38,6 +41,9 @@ public class Enemy : Actor
         sp = GetComponent<SpriteRenderer>();
         bulletPool = StageController.I.enemyBulletPool;
         anim = GetComponent<Animator>();
+        deadSprite = Resources.Load<Sprite>("image/enemyDead");
+        
+        
         
     }
 
@@ -159,13 +165,33 @@ public class Enemy : Actor
             PoolContent poolObj = collision.GetComponent<PoolContent>();
             int damage = poolObj != null ? poolObj.GetComponent<BulletController>().power : collision.GetComponent<Shilde>().power;
             if(poolObj != null)  poolObj.HideFromStage();
-            DelEnemyHp(damage,sp);
+            if(hp > 0)
+            {
+                DelEnemyHp(damage, sp);
+            }
+            
             if(hp <= 0)
             {
-                if (!gameObject.CompareTag("Boss") )
+                if (!gameObject.CompareTag("Boss"))
                 {
+                    if (GetComponent<CircleCollider2D>())
+                    {
+                        GetComponent<CircleCollider2D>().enabled = false;
+                    }
+                    else if(GetComponent<BoxCollider2D>())
+                    {
+                        GetComponent<BoxCollider2D>().enabled = false;
+                    }
+                    else
+                    {
+                        GetComponent<CapsuleCollider2D>().enabled = false;
+                    }
                     
-                    HideFromStage();
+                    
+                    anim.enabled = false;
+                    speed = 0f;
+                    StartCoroutine(_deadFlash());
+                    
                 }
                 else {
                     StopCoroutine(coroutine);
@@ -176,6 +202,17 @@ public class Enemy : Actor
             }
         }
     }
+
+    IEnumerator _deadFlash()
+    {
+        for (int i = 0; i < 10; i++)
+        {
+            sp.enabled = !sp.enabled;
+            yield return new WaitForSeconds(0.05f);
+        }
+        HideFromStage();
+    }
+
 
     public void Shot(EnemyBulletPattern _o)
     {

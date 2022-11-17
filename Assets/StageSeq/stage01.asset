@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   filename: stage01
   enemyPrefabs:
-  - {fileID: 8989878386750815225, guid: 32efa559023ebd64a9f0bdb86521c674, type: 3}
-  - {fileID: 8989878386750815225, guid: 07a6c1ba9af446b419b3203b3d8e7bc4, type: 3}
+  - {fileID: 1589609949088396743, guid: 495fa05fa2695204b9af03d3155a400e, type: 3}
+  - {fileID: 1179226313329962223, guid: 8cfdf7e0835ca8c46baa8f417f90acc6, type: 3}
   - {fileID: 6260538920688793694, guid: f3797415fd30f524f86ff1c60ac70bb2, type: 3}
   - {fileID: 7540365108516590211, guid: e1170ba24e1a89343b35e0d7955b3367, type: 3}
   - {fileID: 3774563486503972503, guid: 26c28b9a20addb34ebc17c5584da7b95, type: 3}
