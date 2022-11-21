@@ -9,7 +9,7 @@ public class Enemy : Actor
     [SerializeField] LayerMask ObstacleLayer;
     [SerializeField] float speed;
     [SerializeField] GameObject launchPort;
-    Sprite deadSprite;
+    
     SpriteRenderer sp;
     bool[] isObstacles;
     bool isTurn;
@@ -41,7 +41,7 @@ public class Enemy : Actor
         sp = GetComponent<SpriteRenderer>();
         bulletPool = StageController.I.enemyBulletPool;
         anim = GetComponent<Animator>();
-        deadSprite = Resources.Load<Sprite>("image/enemyDead");
+        
         
         
         

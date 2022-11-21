@@ -180,11 +180,11 @@ public class StageController : MonoBehaviour
 
     IEnumerator ViewGoalAction()
     {
-        
+        SoundManager.I.StopBGM();
         yield return new WaitForSeconds(0.5f);
-        SoundManager.I.LoopSwitch();
-        SoundManager.I.PlayBGM(BGMSoundData.BGM.STAGECLEAR);
-        
+        //SoundManager.I.LoopSwitch();
+        //SoundManager.I.PlayBGM(BGMSoundData.BGM.STAGECLEAR);
+        SoundManager.I.PlaySE(SESoundData.SE.STAGECLEAR);
         
         
         //yield return new WaitForSeconds(6.9f);

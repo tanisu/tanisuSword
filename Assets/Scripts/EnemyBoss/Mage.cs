@@ -6,8 +6,9 @@ public class Mage : BossBase
 {
     Animator anim;
     [SerializeField] GameObject[] thunders;
-    float[] xPos = { 4.5f, 7f };
-    float[] yPos = { 2.5f, -2.5f };
+    
+    [SerializeField]float[] xPos ;
+    [SerializeField]float[] yPos ;
     int actionCount = 0;
     bool isThunder;
     new void Start()

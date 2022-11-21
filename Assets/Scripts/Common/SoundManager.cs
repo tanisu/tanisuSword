@@ -141,7 +141,8 @@ public class SESoundData
         BOMWALL,
         STAFFFALL,
         STAFFGROUND,
-        Thunder
+        Thunder,
+        STAGECLEAR
     }
 
     public SE se;

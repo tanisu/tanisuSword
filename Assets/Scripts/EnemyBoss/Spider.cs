@@ -9,7 +9,7 @@ public class Spider : BossBase
     float xLimit = 1.9f;
     const float DEFAULTY = 2.5f;
     float retrunY = 2.5f;
-    float yLimit = 0f;
+    float yLimit = -0.5f;
     Animator anim;
     public bool isAttack;
     int attackCount = 0;
@@ -134,7 +134,7 @@ public class Spider : BossBase
         anim.SetBool("Left", false);
         anim.SetBool("Right", false);
 
-        retrunY = retrunY > yLimit ? retrunY - 0.5f : DEFAULTY;
+        retrunY = retrunY > yLimit ? retrunY - 0.75f : DEFAULTY;
 
         //if(retrunY > yLimit)
         //{
