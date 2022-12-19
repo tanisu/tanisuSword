@@ -101,9 +101,10 @@ MonoBehaviour:
   bodySpeed: 2
   steerSpeed: 180
   bodyPrefab: {fileID: 1370743119367830591, guid: 75a0aa08c333b3048b69977796ac2674, type: 3}
+  snakeHead: {fileID: 0}
   gap: 75
-  bodyCount: 0
   target: {fileID: 0}
+  bodyNums: 0
 --- !u!1 &5583031244874841968
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,9 +149,11 @@ GameObject:
   - component: {fileID: 5583031245544655220}
   - component: {fileID: 5583031245544655221}
   - component: {fileID: 5583031245544655227}
+  - component: {fileID: 8412991146268632157}
+  - component: {fileID: 3474745008853628723}
   m_Layer: 0
   m_Name: SnakeHead
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -234,4 +237,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6787be18b51557b4f95955bb91208bae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 0
+  power: 0
+  isFling: 0
+  randomTrun: 0
+  ObstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  speed: 0
+  launchPort: {fileID: 0}
+  exp: 0
+  dir: 0
   target: {fileID: 5583031243967665922}
+--- !u!58 &8412991146268632157
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5583031245544655222}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.3333334
+--- !u!114 &3474745008853628723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5583031245544655222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 080d7bdd8de10614682343300363e1eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

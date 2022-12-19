@@ -121,7 +121,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 4
-  power: 2
+  power: 4
   isFling: 0
   randomTrun: 1
   ObstacleLayer:
@@ -129,6 +129,7 @@ MonoBehaviour:
     m_Bits: 64
   speed: 0.5
   launchPort: {fileID: 0}
+  exp: 4
   dir: 0
 --- !u!61 &2758733223109266914
 BoxCollider2D:

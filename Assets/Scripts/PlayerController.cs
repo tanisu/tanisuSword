@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
+using UnityEngine.Events;
 
 public class PlayerController : Actor
 {
@@ -26,13 +26,15 @@ public class PlayerController : Actor
     [SerializeField]bool isInHole;
     [SerializeField] Vector3 smallScale = new Vector3(0.9f, 0.9f);
     public bool isDead, hasShilde, isDeadLine, isObstacle,isHitting;
-    
-    
-    
+    public int level = 0;
+    public int exp = 0;
+    public int[] levelTable = new int[4] { 32, 64, 128, 256 };
+    int upHp = 20;
+    public UnityAction<Dictionary<string,int>> LevelUp;
+    Dictionary<string, int> levelParams;
 
 
-
-    void Start()
+    private void Start()
     {
         bulletPool = StageController.I.playerBulletPool;
         sp = GetComponent<SpriteRenderer>();
@@ -41,9 +43,26 @@ public class PlayerController : Actor
         isDead = false;
         isObstacle = false;
         hp = maxHp;
+        levelParams = new Dictionary<string, int>() {
+            { "maxHp", maxHp },
+            { "level", level +1},
+            { "currentHp", hp},
+            {"currentExp",exp },
+            {"nextExp", levelTable[level] }
+        };
+        if (!GameManager.I.levelParams.ContainsKey("maxHp"))
+        {
+            GameManager.I.levelParams = levelParams;
+        }
+        else
+        {
+            maxHp = GameManager.I.levelParams["maxHp"];
+            hp = maxHp;
+            level = GameManager.I.levelParams["level"] - 1;
+        }
     }
 
-    
+
     void Update()
     {
         interval -= Time.deltaTime;
@@ -60,16 +79,36 @@ public class PlayerController : Actor
         {
             isObstacle = false;
         }
-
-
-
         if (isObstacle && isDeadLine)
         {
             _deadMe();
         }
+    }
 
+    public void AddExp(int _exp)
+    {
 
-
+        exp += _exp;
+        if (exp >= levelTable[level])
+        {
+            SoundManager.I.PlaySE(SESoundData.SE.LEVELUP);
+            exp = 0;
+            maxHp += upHp;
+            hp += upHp;
+            level++;
+            levelParams["maxHp"] = maxHp;
+            levelParams["level"] = level + 1;
+            levelParams["currentHp"] = hp;
+            levelParams["currentExp"] = exp;
+            if(level <= levelTable.Length - 1)
+            {
+                levelParams["nextExp"] = levelTable[level];
+            }
+                
+            LevelUp?.Invoke(levelParams);
+                
+        }
+        
 
     }
 
@@ -124,11 +163,17 @@ public class PlayerController : Actor
         hasShilde = !hasShilde;
     }
 
-    public void SetParams(float _shootInterval ,float _speed,bool _hasShilde)
+    public void SetParams(float _shootInterval ,float _speed,bool _hasShilde,Dictionary<string,int> _levelParams)
     {
         shootInterval = _shootInterval;
         speed = _speed;
         hasShilde = _hasShilde;
+        levelParams = _levelParams;
+        exp = _levelParams["currentExp"];
+        level = _levelParams["level"] - 1;
+        maxHp = _levelParams["maxHp"];
+        hp = maxHp;
+
         if (hasShilde)
         {
             shilde.SetActive(true);
@@ -145,6 +190,10 @@ public class PlayerController : Actor
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.CompareTag("Girl"))
+        {
+            StageController.I.ToEnding();
+        }
         if (collision.CompareTag("DeadLine"))
         {
             isDeadLine = true;
@@ -156,11 +205,16 @@ public class PlayerController : Actor
                 
                 int damage = collision.CompareTag("Enemy") ? collision.gameObject.GetComponent<Enemy>().power : collision.gameObject.GetComponent<BulletController>().power;
                 _damaged(damage);
+                if (collision.CompareTag("EnemyBullet"))
+                {
+                    collision.GetComponent<BulletController>().HideFromStage();
+                }
             }
             else
             {
                 shilde.GetComponent<Shilde>().isHit = false;
             }
+            
         }
 
         if (collision.CompareTag("Boss"))
@@ -188,6 +242,8 @@ public class PlayerController : Actor
                     StartCoroutine(_jump(collision));
                     break;
             }
+            _damaged(1);
+
         }
         if (collision.CompareTag("House"))
         {
@@ -255,9 +311,12 @@ public class PlayerController : Actor
 
         if (collision.CompareTag("Goal"))
         {
+            levelParams["currentExp"] = exp;
+            
             GameManager.I.currentHasShilde = hasShilde;
             GameManager.I.currentShootInterval = shootInterval;
             GameManager.I.currentSpeed = speed;
+            GameManager.I.levelParams = levelParams;
             StageController.I.ViewStageClear();
             gameObject.SetActive(false);
         }
@@ -358,4 +417,6 @@ public class PlayerController : Actor
         _stopMove();
         isInHole = true;
     }
+
+
 }

@@ -135,6 +135,7 @@ MonoBehaviour:
     m_Bits: 0
   speed: 0
   launchPort: {fileID: 0}
+  exp: 15
   dir: 0
 --- !u!114 &8775718990969600705
 MonoBehaviour:

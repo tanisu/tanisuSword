@@ -24,8 +24,9 @@ public class SoundManager : MonoBehaviour
     {
         if(I == null)
         {
-            I = this;
+            
             DontDestroyOnLoad(gameObject);
+            I = this;
         }
         else
         {
@@ -142,7 +143,9 @@ public class SESoundData
         STAFFFALL,
         STAFFGROUND,
         Thunder,
-        STAGECLEAR
+        STAGECLEAR,
+        DRAGON,
+        LEVELUP
     }
 
     public SE se;

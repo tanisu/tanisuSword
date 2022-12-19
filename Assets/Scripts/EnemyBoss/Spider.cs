@@ -11,7 +11,7 @@ public class Spider : BossBase
     float retrunY = 2.5f;
     float yLimit = -0.5f;
     Animator anim;
-    public bool isAttack;
+    public bool isDirectAttack;
     int attackCount = 0;
     Tween tween;
     enum DIRECTION
@@ -32,11 +32,13 @@ public class Spider : BossBase
     public void Attack()
     {
         attackCount++;
+        Debug.Log(attackCount);
         if(attackCount < 9)
         {
+            
             Instantiate(net, transform);
         }
-        else
+        else if(!isDirectAttack )
         {
             _attack2();
         }
@@ -101,9 +103,13 @@ public class Spider : BossBase
 
     private void _attack2()
     {
+        //isAttack = false;
+        //anim.SetBool("Attack", false);
+
         anim.SetBool("Idle", false);
         anim.SetBool("Left", false);
         anim.SetBool("Right", false);
+        
         Vector3 beforePos = new Vector3(0,2.5f);
         tween = transform.DOLocalMove(new Vector3(0, 0), 0.3f).SetLink(gameObject).OnComplete(() =>
         {
@@ -128,32 +134,32 @@ public class Spider : BossBase
 
 
         Vector3 beforePos = transform.position;
-        isAttack = true;
+        isDirectAttack = true;
         anim.SetBool("Attack", true);
         anim.SetBool("Idle", false);
         anim.SetBool("Left", false);
         anim.SetBool("Right", false);
+        
 
         retrunY = retrunY > yLimit ? retrunY - 0.75f : DEFAULTY;
 
-        //if(retrunY > yLimit)
-        //{
-        //    retrunY -= 0.5f;
-        //}
-        //else
-        //{
-        //    retrunY = DEFAULTY;
-        //}
+
 
         tween =  transform.DOMove(netPos, 0.53f).SetLink(gameObject).OnComplete(()=> {
             tween = transform.DOLocalMove(new Vector3(0,retrunY), 0.6f).SetLink(gameObject).OnComplete(()=> {
                 
                 anim.SetBool("Attack", false);
                 direction = (DIRECTION)Random.Range(1, 3);
-                //Debug.Log(direction);
                 IdleEnd();
-                isAttack = false;
+                isDirectAttack = false;
             });
         });
+    }
+
+    protected override void DeadStart()
+    {
+        tween.Kill();
+        base.DeadStart();
+        
     }
 }

@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   net: {fileID: 9198314029916300044, guid: 2da9ffde0a70c8a44b50d132cddd6789, type: 3}
-  isAttack: 0
+  isDirectAttack: 0
 --- !u!114 &4815685701529138753
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
-  power: 3
+  power: 5
   isFling: 0
   randomTrun: 0
   ObstacleLayer:
@@ -144,6 +144,7 @@ MonoBehaviour:
     m_Bits: 0
   speed: 0
   launchPort: {fileID: 7014096680014852153}
+  exp: 10
   dir: 0
 --- !u!58 &6382538386273151178
 CircleCollider2D:

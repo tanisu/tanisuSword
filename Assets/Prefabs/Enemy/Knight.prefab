@@ -129,6 +129,7 @@ MonoBehaviour:
     m_Bits: 64
   speed: 0.7
   launchPort: {fileID: 0}
+  exp: 4
   dir: 0
 --- !u!61 &2758733223109266914
 BoxCollider2D:
