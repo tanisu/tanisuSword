@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   direction: 0
   speed: 0
-  count: 10
-  opneAngle: 25
+  count: 20
+  opneAngle: 8
   isAimPlayer: 0
   power: 1
+  isWaitTime: 0

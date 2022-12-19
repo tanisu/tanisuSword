@@ -11,6 +11,7 @@ public class Mage : BossBase
     [SerializeField]float[] yPos ;
     int actionCount = 0;
     bool isThunder;
+    Coroutine co;
     new void Start()
     {
         
@@ -75,7 +76,7 @@ public class Mage : BossBase
     {
         if (!isThunder)
         {
-            StartCoroutine(_thunderAttack());
+           co = StartCoroutine(_thunderAttack());
         }
         
         
@@ -96,5 +97,16 @@ public class Mage : BossBase
         anim.SetTrigger("Warp");
     }
 
+
+    protected override void DeadStart()
+    {
+        if(co != null)
+        {
+            StopCoroutine(co);
+        }
+        
+        base.DeadStart();
+        
+    }
 
 }

@@ -73,7 +73,7 @@ public class StageController : MonoBehaviour
         }
         
         nextStage = currentStage + 1;
-        Debug.Log(nextStage);
+        
         StartCoroutine(ShowStagePanel());
         canShoot = true;
     }
@@ -82,15 +82,22 @@ public class StageController : MonoBehaviour
     {
         SoundManager.I.LoopSwitch();
         SoundManager.I.PlayBGM(BGMSoundData.BGM.INTORO);
-        yield return new WaitForSeconds(2.0f);
+        
+        yield return new WaitForSeconds(1.9f);
+        ui.InitLevelUI(GameManager.I.levelParams);
         ui.HideStartPanel();
         isIdle = false;
         SoundManager.I.PlayBGM(BGMSoundData.BGM.STAGE);
         SoundManager.I.LoopSwitch();
         if (currentStage > 1 && GameManager.I.currentSpeed > 0)
         {
-            player.SetParams(GameManager.I.currentShootInterval, GameManager.I.currentSpeed, GameManager.I.currentHasShilde);
+            player.SetParams(
+                GameManager.I.currentShootInterval,
+                GameManager.I.currentSpeed,
+                GameManager.I.currentHasShilde,
+                GameManager.I.levelParams);
         }
+        player.LevelUp = _updatePlayerLevel;
 
     }
 
@@ -165,6 +172,23 @@ public class StageController : MonoBehaviour
     }
 
 
+    public void AddExp(int _exp)
+    {
+        
+        if(player.level < player.levelTable.Length)
+        {
+            ui.UpdateExpSlider(_exp);
+            player.AddExp(_exp);
+        }
+        
+    }
+
+
+    private void _updatePlayerLevel(Dictionary<string ,int > _playerLevel)
+    {
+        
+        ui.UpdateLevelUI(_playerLevel);
+    }
 
     public void UpdateHp(int hp)
     {
@@ -182,14 +206,13 @@ public class StageController : MonoBehaviour
     {
         SoundManager.I.StopBGM();
         yield return new WaitForSeconds(0.5f);
-        //SoundManager.I.LoopSwitch();
-        //SoundManager.I.PlayBGM(BGMSoundData.BGM.STAGECLEAR);
-        SoundManager.I.PlaySE(SESoundData.SE.STAGECLEAR);
+        SoundManager.I.LoopSwitch();
+        SoundManager.I.PlayBGM(BGMSoundData.BGM.STAGECLEAR);
         
         
-        //yield return new WaitForSeconds(6.9f);
-        //SoundManager.I.StopBGM();
-        //SoundManager.I.LoopSwitch();
+        yield return new WaitForSeconds(6.9f);
+        SoundManager.I.StopBGM();
+        SoundManager.I.LoopSwitch();
         yield return new WaitForSeconds(0.5f);
 
         goalPanel.ViewGoal();
@@ -257,11 +280,15 @@ public class StageController : MonoBehaviour
 
     }
 
-
+    public void ToEnding()
+    {
+        SceneManager.LoadScene("Ending");
+    }
 
 
     public void Retry()
     {
+
         GameManager.I.ResetParams();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
@@ -283,19 +310,35 @@ public class StageController : MonoBehaviour
         BGController[] bGs = tilemap.GetComponentsInChildren<BGController>();
         foreach(BGController bg in bGs)
         {
-            bg.ChangeColor();
+            bg.ChangeColor(1f);
         }
         foreach(RainController _rain in rains)
         {
             _rain.StopRain();
         }
+        canShoot = false;
         SoundManager.I.FadeOutBGM();
     }
 
+    public void LastBattle()
+    {
+        rain.SetActive(true);
+        RainController[] rains = rain.GetComponentsInChildren<RainController>();
+        BGController[] bGs = tilemap.GetComponentsInChildren<BGController>();
+        foreach (RainController _rain in rains)
+        {
+            _rain.RedRain();
+        }
+        foreach(BGController _bg in bGs)
+        {
+            _bg.ChangeColor(0f);
+        }
+    }
 
     public void FakeEndStart()
     {
         fakeEnd.gameObject.SetActive(true);
+        rain.SetActive(false);
     }
 
     IEnumerator _light(bool _domask)

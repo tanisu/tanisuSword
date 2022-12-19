@@ -21,7 +21,7 @@ public class BossBase : MonoBehaviour
         SoundManager.I.PlayBGM(BGMSoundData.BGM.BOSS);
     }
 
-    protected void DeadStart()
+    protected virtual void DeadStart()
     {
         StageController.I.canShoot = false;
         SoundManager.I.PlaySE(SESoundData.SE.BOSS_EXPLOSION);

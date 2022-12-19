@@ -129,6 +129,7 @@ MonoBehaviour:
     m_Bits: 0
   speed: 0
   launchPort: {fileID: 0}
+  exp: 2
   dir: 0
 --- !u!58 &6542359418137441903
 CircleCollider2D:

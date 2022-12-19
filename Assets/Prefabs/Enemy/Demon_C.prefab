@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 1
-  power: 1
+  power: 5
   isFling: 1
   randomTrun: 0
   ObstacleLayer:
@@ -177,6 +177,7 @@ MonoBehaviour:
     m_Bits: 0
   speed: 0
   launchPort: {fileID: 0}
+  exp: 15
   dir: 0
 --- !u!114 &6272412796027393930
 MonoBehaviour:

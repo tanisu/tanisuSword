@@ -168,14 +168,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2f3145096b333442b3328cb02c11ac9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 85
-  power: 1
+  hp: 100
+  power: 5
   isFling: 1
+  randomTrun: 0
   ObstacleLayer:
     serializedVersion: 2
     m_Bits: 0
   speed: 0
   launchPort: {fileID: 0}
+  exp: 0
   dir: 0
 --- !u!114 &6272412796027393930
 MonoBehaviour:

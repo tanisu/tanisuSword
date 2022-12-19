@@ -158,11 +158,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 5
-  power: 2
+  power: 3
   isFling: 0
+  randomTrun: 0
   ObstacleLayer:
     serializedVersion: 2
     m_Bits: 64
   speed: 0
   launchPort: {fileID: 0}
+  exp: 8
   dir: 0

@@ -25,26 +25,28 @@ public class BGController : MonoBehaviour
         transform.position = nowPos;
     }
 
-    public void ChangeColor()
+    public void ChangeColor(float _c)
     {
-        StartCoroutine(_changeColor());
+        StartCoroutine(_changeColor(_c));
     }
-    IEnumerator _changeColor()
+    IEnumerator _changeColor(float _c)
     {
         yield return null;
-        float _c = sp.color.r;
-        float _nextColor = _c == 0 ? 1f : 0f;
-        while(_nextColor != _c)
+        float c = sp.color.r;
+        //float _c = sp.color.r;
+        float _nextColor = _c;
+        
+        while(_nextColor != c)
         {
             if(_nextColor == 1f)
             {
-                _c += 0.1f;
+                c += 0.1f;
             }
             else
             {
-                _c -= 0.1f;
+                c -= 0.1f;
             }
-            sp.color = new Color(_c, _c, _c);
+            sp.color = new Color(c, c, c);
             yield return new WaitForSeconds(0.43f);
         }
 

@@ -154,7 +154,6 @@ GameObject:
   - component: {fileID: 9209732551647565838}
   - component: {fileID: 9209732551647565839}
   - component: {fileID: 9209732551647565833}
-  - component: {fileID: 2534860402661231173}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -331,19 +330,6 @@ MonoBehaviour:
   isDeadLine: 0
   isObstacle: 0
   isHitting: 0
---- !u!58 &2534860402661231173
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9209732551647565875}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.19
+  level: 0
+  exp: 0
+  levelTable: 20000000400000008000000000010000

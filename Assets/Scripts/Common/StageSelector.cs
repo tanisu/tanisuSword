@@ -22,9 +22,9 @@ public class StageSelector : MonoBehaviour
     {
         for(int i = 0; i < stageButton.Length; i++)
         {
-            Text stageText = stageButton[i].GetComponentInChildren<Text>();
+            //Text stageText = stageButton[i].GetComponentInChildren<Text>();
             int stage = stageButton[i].GetComponentInChildren<StageBtn>().stage;
-            stageText.text += stage.ToString();
+            //stageText.text += stage.ToString();
             stageButton[i].GetComponent<Button>().onClick.AddListener(() => { SelectStage(stage); });
 
             if (stageNumber >= i)
@@ -33,8 +33,10 @@ public class StageSelector : MonoBehaviour
             }
             else
             {
-                stageButton[i].GetComponent<Image>().color = new Color(1,1,1,0.5f);
+                stageButton[i].GetComponent<Image>().color = new Color(1, 1, 1, 0.5f);
             }
+            stageButton[i].GetComponent<Button>().enabled = true;
+
         }
     }
 

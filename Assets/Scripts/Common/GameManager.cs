@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     public float currentShootInterval;
     public float currentSpeed;
     public bool currentHasShilde;
+    public Dictionary<string, int> levelParams = new Dictionary<string, int>();
+    
 
     private void Awake()
     {
@@ -28,5 +30,7 @@ public class GameManager : MonoBehaviour
         currentHasShilde = false;
         currentShootInterval = 0;
         currentSpeed = 0;
+        levelParams["currentExp"] = 0;
+        //levelParams = new Dictionary<string, int>();
     }
 }

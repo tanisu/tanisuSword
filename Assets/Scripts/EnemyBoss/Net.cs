@@ -31,7 +31,7 @@ public class Net : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !spider.isAttack)
+        if (collision.CompareTag("Player") && !spider.isDirectAttack)
         {
             StageController.I.player.CatchedHole();
             spider.CatchPlayer(transform.position);

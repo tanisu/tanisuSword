@@ -15,6 +15,7 @@ public class Actor : MonoBehaviour
         isFlash = true;
         for (int i = 0; i < 10; i++)
         {
+            
             sp.enabled = false;
             yield return new WaitForSeconds(0.05f);
             sp.enabled = true;
@@ -39,12 +40,14 @@ public class Actor : MonoBehaviour
         }
     }
 
-    protected void DelEnemyHp(int damage,SpriteRenderer sp)
+    protected virtual void DelEnemyHp(int damage,SpriteRenderer sp)
     {
         hp -= damage;
-            if(sp != null && !isFlash)
-            {
-                coroutine = StartCoroutine(_flashColor(sp));
-            }
+
+        if(sp != null && !isFlash)
+        {
+
+            coroutine = StartCoroutine(_flashColor(sp));
+        }
     }
 }

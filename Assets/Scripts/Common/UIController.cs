@@ -9,10 +9,10 @@ using DG.Tweening;
 public class UIController : MonoBehaviour
 {
 
-    public Slider s;
+    public Slider hpS,expS;
     [SerializeField] GameObject gameOverPanel,stageClearPanel,stageStartPanel;
-    [SerializeField] Text testText;
-
+    [SerializeField] Text currentHpText,maxHpText,levelText ;
+    
     private void Start()
     {
         gameOverPanel.SetActive(false);
@@ -21,16 +21,63 @@ public class UIController : MonoBehaviour
     {
         if (StageController.I.isStop)
         {
-            DOTween.To(()=>s.value,val=>s.value = val,hp,1.0f).OnComplete(()=>{
+            DOTween.To(()=>hpS.value,val=>hpS.value = val,hp,1.0f).OnComplete(()=>{
+                _updateCurrentHpText(hp);
                 StageController.I.ReScroll();
             });
         }
         else
         {
-            s.value = hp;
+            _updateCurrentHpText(hp);
+            hpS.value = hp;
+
+            
         }
-        
     }
+
+    private void _updateCurrentHpText(int _hp)
+    {
+        if (_hp <= 0)
+        {
+            currentHpText.text = "0";
+        }
+        else
+        {
+            currentHpText.text = _hp.ToString();
+        }
+    }
+
+    public void UpdateLevelUI(Dictionary<string,int> _levelParams)
+    {
+        
+        hpS.maxValue = _levelParams["maxHp"];
+        hpS.value = _levelParams["currentHp"];
+        currentHpText.text = _levelParams["currentHp"].ToString();
+        maxHpText.text = $"/ {_levelParams["maxHp"]}";
+        levelText.text = $"LV: {_levelParams["level"]}";
+        expS.maxValue = _levelParams["nextExp"];
+        expS.value = _levelParams["currentExp"];
+    }
+
+    public void InitLevelUI(Dictionary<string, int> _levelParams)
+    {
+
+        hpS.maxValue = _levelParams["maxHp"];
+        hpS.value = _levelParams["maxHp"];
+        currentHpText.text = _levelParams["maxHp"].ToString();
+        maxHpText.text = $"/ {_levelParams["maxHp"]}";
+        levelText.text = $"LV: {_levelParams["level"]}";
+        expS.maxValue = _levelParams["nextExp"];
+        expS.value = _levelParams["currentExp"];
+    }
+
+
+    public void UpdateExpSlider(int _exp)
+    {
+        expS.value += _exp;
+    }
+
+
     public void ViewGameOverPanel()
     {
         gameOverPanel.SetActive(true);
@@ -51,8 +98,5 @@ public class UIController : MonoBehaviour
         stageStartPanel.SetActive(false);
     }
 
-    public void TestText()
-    {
-        testText.text = "stage";
-    }
+    
 }

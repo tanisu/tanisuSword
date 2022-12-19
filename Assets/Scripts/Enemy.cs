@@ -10,17 +10,17 @@ public class Enemy : Actor
     [SerializeField] float speed;
     [SerializeField] GameObject launchPort;
     
-    SpriteRenderer sp;
+    protected SpriteRenderer sp;
     bool[] isObstacles;
     bool isTurn;
     float width = 0.2f;
     float lineLength = 0.2f;
-    ObjectPool bulletPool;
-    Animator anim;
+    protected ObjectPool bulletPool;
+    protected Animator anim;
     bool reStart;
     bool turnRight;
-    
 
+    public int exp;
 
     public enum DIR
     {
@@ -40,8 +40,9 @@ public class Enemy : Actor
         isObstacles = new bool[(int)DIR.MAX];
         sp = GetComponent<SpriteRenderer>();
         bulletPool = StageController.I.enemyBulletPool;
-        anim = GetComponent<Animator>();
         
+        anim = GetComponent<Animator>();
+
         
         
         
@@ -157,7 +158,7 @@ public class Enemy : Actor
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("PlayerBullet") || collision.CompareTag("Shiled"))
         {
@@ -190,13 +191,15 @@ public class Enemy : Actor
                     
                     anim.enabled = false;
                     speed = 0f;
+                    StageController.I.AddExp(exp);
                     StartCoroutine(_deadFlash());
                     
                 }
                 else {
+                    
                     StopCoroutine(coroutine);
                     sp.enabled = true;
-                    
+                    StageController.I.AddExp(exp);
                     anim.SetBool("isDead", true);
                 }
             }
@@ -243,6 +246,7 @@ public class Enemy : Actor
                 }
 
                 PoolContent obj = bulletPool.Launch(transform.position + Vector3.up * 0.2f);
+                
                 if (obj != null)
                 {
                     BulletController bullet = obj.GetComponent<BulletController>();
