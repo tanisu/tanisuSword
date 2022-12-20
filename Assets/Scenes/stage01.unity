@@ -1125,6 +1125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -10754,6 +10755,10 @@ PrefabInstance:
       propertyPath: deadZone
       value: 0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 5031212264379112126, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5217415817475615351, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
       propertyPath: m_Text
       value: STAGE 1
@@ -10840,7 +10845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9159688444488666066, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9159688444488666076, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
       propertyPath: moveThreshold
@@ -10849,6 +10854,14 @@ PrefabInstance:
     - target: {fileID: 9159688444488666077, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
       propertyPath: m_RootOrder
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159688444880103669, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9159688445726534531, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5186199837436803344, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
