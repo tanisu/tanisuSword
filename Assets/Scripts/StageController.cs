@@ -140,8 +140,8 @@ public class StageController : MonoBehaviour
         float y = 0;
 
         
-        x = Input.GetAxisRaw("Horizontal");
-        y = Input.GetAxisRaw("Vertical");
+        //x = Input.GetAxisRaw("Horizontal");
+        //y = Input.GetAxisRaw("Vertical");
 
 
         if (d_joystick.gameObject.activeSelf == true)

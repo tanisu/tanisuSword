@@ -370,6 +370,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Stage
       objectReference: {fileID: 0}
+    - target: {fileID: 5247427147883190022, guid: 63b74f3887fd8c24e805386fe69a9944, type: 3}
+      propertyPath: aspectVec.x
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247427147883190022, guid: 63b74f3887fd8c24e805386fe69a9944, type: 3}
+      propertyPath: aspectVec.y
+      value: 1920
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 63b74f3887fd8c24e805386fe69a9944, type: 3}
 --- !u!20 &46186127 stripped
@@ -388,6 +396,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 642b7eeab43e79b428e3ff925da71ef3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &46186129 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3583838417694864855, guid: 63b74f3887fd8c24e805386fe69a9944, type: 3}
+  m_PrefabInstance: {fileID: 46186126}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &73241046
 GameObject:
   m_ObjectHideFlags: 0
@@ -5632,6 +5645,39 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3583838417694864683, guid: 63b74f3887fd8c24e805386fe69a9944, type: 3}
   m_PrefabInstance: {fileID: 46186126}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &959249778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46186129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!4 &982202845 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3325125814919120822, guid: 7b2042eb42668fc479c0b610cc0df073, type: 3}
@@ -7549,6 +7595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -9320,11 +9367,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5583031243967665980, guid: 0c597d726516db340b2b91abdd88891a, type: 3}
       propertyPath: bodySpeed
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5583031243967665980, guid: 0c597d726516db340b2b91abdd88891a, type: 3}
       propertyPath: moveSpeed
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5583031243967665980, guid: 0c597d726516db340b2b91abdd88891a, type: 3}
       propertyPath: snakeHead
@@ -9428,15 +9475,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5583031245544655227, guid: 0c597d726516db340b2b91abdd88891a, type: 3}
       propertyPath: hp
-      value: 50
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5583031245544655227, guid: 0c597d726516db340b2b91abdd88891a, type: 3}
       propertyPath: exp
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5583031245544655227, guid: 0c597d726516db340b2b91abdd88891a, type: 3}
       propertyPath: power
-      value: 3
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8412991146268632157, guid: 0c597d726516db340b2b91abdd88891a, type: 3}
       propertyPath: m_Radius
