@@ -2100,6 +2100,14 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Stage
       objectReference: {fileID: 0}
+    - target: {fileID: 5247427147883190022, guid: 63b74f3887fd8c24e805386fe69a9944, type: 3}
+      propertyPath: aspectVec.x
+      value: 1080
+      objectReference: {fileID: 0}
+    - target: {fileID: 5247427147883190022, guid: 63b74f3887fd8c24e805386fe69a9944, type: 3}
+      propertyPath: aspectVec.y
+      value: 1920
+      objectReference: {fileID: 0}
     - target: {fileID: 6475137428103899935, guid: 63b74f3887fd8c24e805386fe69a9944, type: 3}
       propertyPath: m_IsActive
       value: 0
