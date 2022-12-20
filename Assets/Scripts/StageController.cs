@@ -142,22 +142,23 @@ public class StageController : MonoBehaviour
         
         x = Input.GetAxisRaw("Horizontal");
         y = Input.GetAxisRaw("Vertical");
-        
-        
-        //if (d_joystick.gameObject.activeSelf == true)
-        //{
-        //    x = d_joystick.Horizontal;
-        //    y = d_joystick.Vertical;
-        //}
-        //else if (f_joystick.gameObject.activeSelf == true)
-        //{           
-        //    x = f_joystick.Horizontal;
-        //    y = f_joystick.Vertical;
-        //}else if(fix_joystick.gameObject.activeSelf == true)
-        //{
-        //    x = fix_joystick.Horizontal;
-        //    y = fix_joystick.Vertical;
-        //}
+
+
+        if (d_joystick.gameObject.activeSelf == true)
+        {
+            x = d_joystick.Horizontal;
+            y = d_joystick.Vertical;
+        }
+        else if (f_joystick.gameObject.activeSelf == true)
+        {
+            x = f_joystick.Horizontal;
+            y = f_joystick.Vertical;
+        }
+        else if (fix_joystick.gameObject.activeSelf == true)
+        {
+            x = fix_joystick.Horizontal;
+            y = fix_joystick.Vertical;
+        }
 
 
 

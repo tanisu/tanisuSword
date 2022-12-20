@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3583838417694864683}
   - component: {fileID: 3583838417694864852}
   - component: {fileID: 3583838417694864854}
+  - component: {fileID: 5247427147883190022}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -84,6 +85,20 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3583838417694864855}
   m_Enabled: 1
+--- !u!114 &5247427147883190022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3583838417694864855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8b830782c635a44fb3ef801db2d7ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetCamera: {fileID: 3583838417694864852}
+  aspectVec: {x: 360, y: 660}
 --- !u!1 &3583838417731613548
 GameObject:
   m_ObjectHideFlags: 0
@@ -349,12 +364,16 @@ MonoBehaviour:
   d_joystick: {fileID: 0}
   f_joystick: {fileID: 0}
   fix_joystick: {fileID: 0}
+  rain: {fileID: 0}
+  tilemap: {fileID: 0}
+  fakeEnd: {fileID: 0}
   ui: {fileID: 0}
   currentStage: 0
   playStopCode: 0
   isStop: 0
   isPlaying: 0
   canShoot: 0
+  isStopOnly: 0
 --- !u!1 &3583838419539064538
 GameObject:
   m_ObjectHideFlags: 0
