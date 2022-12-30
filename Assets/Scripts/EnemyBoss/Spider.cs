@@ -32,7 +32,7 @@ public class Spider : BossBase
     public void Attack()
     {
         attackCount++;
-        Debug.Log(attackCount);
+        //Debug.Log(attackCount);
         if(attackCount < 9)
         {
             

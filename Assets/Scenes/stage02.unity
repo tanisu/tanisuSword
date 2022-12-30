@@ -1403,6 +1403,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3462008659094341062, guid: bb2c8433ac15d7e4a83799c3c74bd123, type: 3}
   m_PrefabInstance: {fileID: 547214349}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &595951501
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4758218612753661115, guid: c6a5fc6e05008b447b00cf111de43583, type: 3}
+      propertyPath: m_Name
+      value: AdmobManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557374383861563582, guid: c6a5fc6e05008b447b00cf111de43583, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557374383861563582, guid: c6a5fc6e05008b447b00cf111de43583, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557374383861563582, guid: c6a5fc6e05008b447b00cf111de43583, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557374383861563582, guid: c6a5fc6e05008b447b00cf111de43583, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557374383861563582, guid: c6a5fc6e05008b447b00cf111de43583, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557374383861563582, guid: c6a5fc6e05008b447b00cf111de43583, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557374383861563582, guid: c6a5fc6e05008b447b00cf111de43583, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557374383861563582, guid: c6a5fc6e05008b447b00cf111de43583, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557374383861563582, guid: c6a5fc6e05008b447b00cf111de43583, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557374383861563582, guid: c6a5fc6e05008b447b00cf111de43583, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557374383861563582, guid: c6a5fc6e05008b447b00cf111de43583, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c6a5fc6e05008b447b00cf111de43583, type: 3}
 --- !u!4 &617345512 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6400591498984522659, guid: fea61a729747277428e9f9d9ca9ffbf6, type: 3}
@@ -4274,6 +4331,14 @@ PrefabInstance:
     - target: {fileID: 1415675802581033017, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
       propertyPath: m_Name
       value: UICanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 1848229279952901826, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 805429020}
+    - target: {fileID: 1848229279952901826, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: RewardRetry
       objectReference: {fileID: 0}
     - target: {fileID: 4985427751099496577, guid: 6ade75d35d6600643905ff418caeaffe, type: 3}
       propertyPath: m_IsActive

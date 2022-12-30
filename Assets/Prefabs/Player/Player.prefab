@@ -319,7 +319,7 @@ MonoBehaviour:
   moveLimitY: 4.7
   moveLimitX: 2.5
   maxHp: 20
-  maxSpeed: 4
+  maxSpeed: 5
   speed: 1.5
   shilde: {fileID: 1706758531507436697}
   deadSprite: {fileID: 1162032867830542092, guid: e311ce16196c42b43a832b545e2cf3b8, type: 3}

@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e72e2f995a0a3342a234b96314dc69d, type: 3}
+  m_Name: AttackCloud
+  m_EditorClassIdentifier: 
+  characterName: Attack Cloud
+  characterSprite: {fileID: 21300000, guid: c0ff28534c9f85f4a94e5925e5057f80, type: 3}
+  anim: {fileID: 9100000, guid: 6fe856ee4acc47a418a4c58fa8605216, type: 2}

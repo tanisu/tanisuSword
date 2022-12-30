@@ -3,7 +3,7 @@
     "m_SelectedPackage": {
         "deviceId": "25101JEGR02889",
         "name": "com.DefaultCompany.TanisSword",
-        "processId": 26073,
+        "processId": 32220,
         "exited": false
     },
     "m_SelectedPriority": 0,
@@ -203,31 +203,73 @@
         {
             "deviceId": "25101JEGR02889",
             "name": "com.DefaultCompany.TanisSword",
-            "processId": 20714,
+            "processId": 16650,
+            "exited": true
+        },
+        {
+            "deviceId": "25101JEGR02889",
+            "name": "com.DefaultCompany.TanisSword",
+            "processId": 21864,
+            "exited": true
+        },
+        {
+            "deviceId": "25101JEGR02889",
+            "name": "com.DefaultCompany.TanisSword",
+            "processId": 22368,
+            "exited": true
+        },
+        {
+            "deviceId": "25101JEGR02889",
+            "name": "com.DefaultCompany.TanisSword",
+            "processId": 28076,
+            "exited": true
+        },
+        {
+            "deviceId": "25101JEGR02889",
+            "name": "com.google.android.apps.nexuslauncher",
+            "processId": 2781,
             "exited": false
         },
         {
             "deviceId": "25101JEGR02889",
             "name": "com.DefaultCompany.TanisSword",
-            "processId": 23226,
+            "processId": 28643,
             "exited": false
         },
         {
             "deviceId": "25101JEGR02889",
             "name": "com.DefaultCompany.TanisSword",
-            "processId": 24414,
+            "processId": 29389,
             "exited": false
         },
         {
             "deviceId": "25101JEGR02889",
             "name": "com.DefaultCompany.TanisSword",
-            "processId": 25847,
+            "processId": 29912,
             "exited": false
         },
         {
             "deviceId": "25101JEGR02889",
             "name": "com.DefaultCompany.TanisSword",
-            "processId": 26073,
+            "processId": 30536,
+            "exited": false
+        },
+        {
+            "deviceId": "25101JEGR02889",
+            "name": "com.DefaultCompany.TanisSword",
+            "processId": 31237,
+            "exited": false
+        },
+        {
+            "deviceId": "25101JEGR02889",
+            "name": "com.DefaultCompany.TanisSword",
+            "processId": 31772,
+            "exited": false
+        },
+        {
+            "deviceId": "25101JEGR02889",
+            "name": "com.DefaultCompany.TanisSword",
+            "processId": 32220,
             "exited": false
         }
     ],

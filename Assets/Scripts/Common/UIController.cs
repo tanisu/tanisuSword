@@ -21,7 +21,8 @@ public class UIController : MonoBehaviour
     {
         if (StageController.I.isStop)
         {
-            DOTween.To(()=>hpS.value,val=>hpS.value = val,hp,1.0f).OnComplete(()=>{
+            DOTween.To(() => hpS.value, val => hpS.value = val, hp, 1.0f).SetLink(gameObject).OnComplete(() =>
+            {
                 _updateCurrentHpText(hp);
                 StageController.I.ReScroll();
             });
