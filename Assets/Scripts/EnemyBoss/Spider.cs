@@ -12,7 +12,7 @@ public class Spider : BossBase
     float yLimit = -0.5f;
     Animator anim;
     public bool isDirectAttack;
-    int attackCount = 0;
+   // int attackCount = 0;
     Tween tween;
     enum DIRECTION
     {
@@ -31,17 +31,17 @@ public class Spider : BossBase
 
     public void Attack()
     {
-        attackCount++;
-        //Debug.Log(attackCount);
-        if(attackCount < 9)
-        {
+        //attackCount++;
+        ////Debug.Log(attackCount);
+        //if(attackCount < 9)
+        //{
             
             Instantiate(net, transform);
-        }
-        else if(!isDirectAttack )
-        {
-            _attack2();
-        }
+        //}
+        //else if(!isDirectAttack )
+        //{
+        //    _attack2();
+        //}
         
     }
     public void IsDead()
@@ -101,30 +101,30 @@ public class Spider : BossBase
         anim.SetBool("Idle", true);
     }
 
-    private void _attack2()
-    {
-        //isAttack = false;
-        //anim.SetBool("Attack", false);
+    //private void _attack2()
+    //{
+    //    //isAttack = false;
+    //    //anim.SetBool("Attack", false);
 
-        anim.SetBool("Idle", false);
-        anim.SetBool("Left", false);
-        anim.SetBool("Right", false);
+    //    anim.SetBool("Idle", false);
+    //    anim.SetBool("Left", false);
+    //    anim.SetBool("Right", false);
         
-        Vector3 beforePos = new Vector3(0,2.5f);
-        tween = transform.DOLocalMove(new Vector3(0, 0), 0.3f).SetLink(gameObject).OnComplete(() =>
-        {
-            anim.SetBool("Attack2", true);
-            tween = transform.DOLocalRotate(new Vector3(0, 0, 360f), 1.5f, RotateMode.FastBeyond360)
-            .SetEase(Ease.Linear).SetLink(gameObject).OnComplete(()=> {
-                tween = transform.DOLocalMove(beforePos, 0.6f).SetLink(gameObject);
-            });
-        });
-    }
+    //    Vector3 beforePos = new Vector3(0,2.5f);
+    //    tween = transform.DOLocalMove(new Vector3(0, 0), 0.3f).SetLink(gameObject).OnComplete(() =>
+    //    {
+    //        anim.SetBool("Attack2", true);
+    //        tween = transform.DOLocalRotate(new Vector3(0, 0, 360f), 1.5f, RotateMode.FastBeyond360)
+    //        .SetEase(Ease.Linear).SetLink(gameObject).OnComplete(()=> {
+    //            tween = transform.DOLocalMove(beforePos, 0.6f).SetLink(gameObject);
+    //        });
+    //    });
+    //}
 
     private void _stopAttack2()
     {
         anim.SetBool("Attack2", false);
-        attackCount = 0;
+       // attackCount = 0;
         anim.SetBool("Idle", true);
     }
 

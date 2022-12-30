@@ -13,6 +13,7 @@ public class AdmobController : MonoBehaviour
 
     public static AdmobController I;
     bool isSceneChange = false;
+    bool isHp = false;
 
     private void Awake()
     {
@@ -44,7 +45,16 @@ public class AdmobController : MonoBehaviour
     {
         if (isSceneChange)
         {
-            SceneManager.LoadScene(sceneName);
+            if (isHp)
+            {
+                StageController.I.HpKaihuku();
+                isHp = false;
+            }
+            else
+            {
+                SceneManager.LoadScene(sceneName);
+            }
+            
             isSceneChange = false;
         }
     }
@@ -76,5 +86,11 @@ public class AdmobController : MonoBehaviour
         reward.Reward();
     }
 
+    public void ShowRewardHp()
+    {
+        isHp = true;
+        reward.Reward();
+
+    }
 
 }

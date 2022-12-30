@@ -324,6 +324,12 @@ public class PlayerController : Actor
         }
     }
 
+    public void Kaihuku()
+    {
+        hp = maxHp;
+        StageController.I.UpdateHp(maxHp);
+    }
+
     public void StayParams()
     {
         levelParams["currentExp"] = exp;
