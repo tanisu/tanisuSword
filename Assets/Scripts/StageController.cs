@@ -140,8 +140,8 @@ public class StageController : MonoBehaviour
         float y = 0;
 
 
-        ////x = Input.GetAxisRaw("Horizontal");
-        ////y = Input.GetAxisRaw("Vertical");
+        //x = Input.GetAxisRaw("Horizontal");
+        //y = Input.GetAxisRaw("Vertical");
 
 
         if (d_joystick.gameObject.activeSelf == true)
@@ -279,6 +279,17 @@ public class StageController : MonoBehaviour
 
         
 
+    }
+
+    public void HpAd()
+    {
+        AdmobController.I.ShowRewardHp();
+    }
+
+    public void HpKaihuku()
+    {
+        ui.HpButtonFalse();
+        player.Kaihuku();
     }
 
     public void Retry()

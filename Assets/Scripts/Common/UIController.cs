@@ -12,7 +12,7 @@ public class UIController : MonoBehaviour
     public Slider hpS,expS;
     [SerializeField] GameObject gameOverPanel,stageClearPanel,stageStartPanel;
     [SerializeField] Text currentHpText,maxHpText,levelText ;
-    
+    [SerializeField] Button hpButton;
     private void Start()
     {
         gameOverPanel.SetActive(false);
@@ -99,5 +99,8 @@ public class UIController : MonoBehaviour
         stageStartPanel.SetActive(false);
     }
 
-    
+    public void HpButtonFalse()
+    {
+        hpButton.interactable = false;
+    }
 }
