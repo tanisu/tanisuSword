@@ -89,7 +89,7 @@ public class StageController : MonoBehaviour
         isIdle = false;
         SoundManager.I.PlayBGM(BGMSoundData.BGM.STAGE);
         SoundManager.I.LoopSwitch();
-        if (currentStage > 1 && GameManager.I.currentSpeed > 0)
+        if (currentStage >= 1 && GameManager.I.currentSpeed > 0)
         {
             player.SetParams(
                 GameManager.I.currentShootInterval,
@@ -135,13 +135,13 @@ public class StageController : MonoBehaviour
  
         transform.Translate(Vector3.up * Time.deltaTime * stageSpeed);
 
-   
+
         float x = 0;
         float y = 0;
 
-        
-        //x = Input.GetAxisRaw("Horizontal");
-        //y = Input.GetAxisRaw("Vertical");
+
+        ////x = Input.GetAxisRaw("Horizontal");
+        ////y = Input.GetAxisRaw("Vertical");
 
 
         if (d_joystick.gameObject.activeSelf == true)
@@ -164,13 +164,12 @@ public class StageController : MonoBehaviour
 
         player.Move(new Vector3(x, y, 0));
 
-        
-
         if (canShoot)
         {
             player.Shot();
         }
     }
+
 
 
     public void AddExp(int _exp)
@@ -209,8 +208,8 @@ public class StageController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         SoundManager.I.LoopSwitch();
         SoundManager.I.PlayBGM(BGMSoundData.BGM.STAGECLEAR);
-        
-        
+
+        AdmobController.I.ShowBanner();
         yield return new WaitForSeconds(6.9f);
         SoundManager.I.StopBGM();
         SoundManager.I.LoopSwitch();
@@ -219,13 +218,13 @@ public class StageController : MonoBehaviour
         goalPanel.ViewGoal();
         yield return new WaitForSeconds(0.5f);
         
-        
-        
+
     }
 
     public void ViewStageClear()
     {
         ui.ViewStageClearPanel();
+        
     }
 
     public void stopScroll(bool _only = false)
@@ -275,30 +274,55 @@ public class StageController : MonoBehaviour
 
     public void NextStage()
     {
+        AdmobController.I.HideBanner();
+        AdmobController.I.ShowInter($"stage0{nextStage}");
 
-        SceneManager.LoadScene($"stage0{nextStage}");
-
+        
 
     }
+
+    public void Retry()
+    {
+        GameManager.I.ResetParams();
+        AdmobController.I.ShowInter(SceneManager.GetActiveScene().name);
+    }
+
+    public void RewardRetry()
+    {
+        player.StayParams();
+        AdmobController.I.ShowReward(SceneManager.GetActiveScene().name);
+    }
+
+    public void ToTitle()
+    {
+        GameManager.I.ResetParams();
+        AdmobController.I.ShowInter("Title");
+    }
+
+    public void ToNextStage(string _sceneName)
+    {
+        SceneManager.LoadScene(_sceneName);
+    }
+
+
+
+
+    public void RetryOrTitle(string _sceneName)
+    {
+
+        SceneManager.LoadScene(_sceneName);
+        //StartCoroutine(_changeScene(_sceneName));
+
+    }
+
+    
+
 
     public void ToEnding()
     {
         SceneManager.LoadScene("Ending");
     }
 
-
-    public void Retry()
-    {
-
-        GameManager.I.ResetParams();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    public void ToTitle()
-    {
-        GameManager.I.ResetParams();
-        SceneManager.LoadScene("Title");
-    }
 
     public void DoLight(bool domask = false)
     {

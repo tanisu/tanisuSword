@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e72e2f995a0a3342a234b96314dc69d, type: 3}
+  m_Name: GirlHead
+  m_EditorClassIdentifier: 
+  characterName: GirlHead
+  characterSprite: {fileID: 1562382372, guid: bda7bc95592229d41a1397ebddd8f525, type: 3}
+  anim: {fileID: 9100000, guid: 64ce1e73575b1b74db8da2db1299bc73, type: 2}

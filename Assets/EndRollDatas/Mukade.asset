@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e72e2f995a0a3342a234b96314dc69d, type: 3}
+  m_Name: Mukade
+  m_EditorClassIdentifier: 
+  characterName: Mukade
+  characterSprite: {fileID: -675155370, guid: df1ff03ef9727a14f8a7876d03af5ae2, type: 3}
+  anim: {fileID: 9100000, guid: 4be399d28782df840b0ffb1496850018, type: 2}

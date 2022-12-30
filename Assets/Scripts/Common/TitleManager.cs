@@ -26,7 +26,10 @@ public class TitleManager : MonoBehaviour
                 _showUI();
         });
         storyButton.onClick.AddListener(() => _moveToStory());
+        //AdmobController.I.ShowBanner();
     }
+
+    
 
     void _showUI()
     {

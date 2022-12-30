@@ -79,7 +79,7 @@ public class PlayerController : Actor
         {
             isObstacle = false;
         }
-        if (isObstacle && isDeadLine)
+        if (isObstacle && isDeadLine && !isDead)
         {
             _deadMe();
         }
@@ -116,7 +116,7 @@ public class PlayerController : Actor
     {
         Vector2 topStartRayPos = transform.position + (transform.up * 0.1f);
         Vector2 topEndRayPos = transform.position + (transform.up * 0.22f);
-        Debug.DrawLine(topStartRayPos, topEndRayPos,Color.green);
+        //Debug.DrawLine(topStartRayPos, topEndRayPos,Color.green);
         RaycastHit2D hit = Physics2D.Linecast(topStartRayPos, topEndRayPos,blockLayer);
 
         return hit;
@@ -125,11 +125,11 @@ public class PlayerController : Actor
     public void Move(Vector3 _moveVec)
     {
         if (StageController.I.isStop || isInHole) return;
-        
-        
-        
+
+
+       // rgbd2d.MovePosition(rgbd2d.position + new Vector2(_moveVec.x, _moveVec.y) * speed);
         rgbd2d.velocity = _moveVec.normalized * speed;
-        
+
         Vector3 nowPos = transform.localPosition;
         nowPos.x = Mathf.Clamp(nowPos.x, -moveLimitX, moveLimitX);
         nowPos.y = Mathf.Clamp(nowPos.y, -moveLimitY, 3.7f);
@@ -165,6 +165,8 @@ public class PlayerController : Actor
 
     public void SetParams(float _shootInterval ,float _speed,bool _hasShilde,Dictionary<string,int> _levelParams)
     {
+
+        
         shootInterval = _shootInterval;
         speed = _speed;
         hasShilde = _hasShilde;
@@ -320,6 +322,16 @@ public class PlayerController : Actor
             StageController.I.ViewStageClear();
             gameObject.SetActive(false);
         }
+    }
+
+    public void StayParams()
+    {
+        levelParams["currentExp"] = exp;
+        GameManager.I.currentHasShilde = hasShilde;
+        GameManager.I.currentShootInterval = shootInterval;
+        GameManager.I.currentSpeed = speed;
+        GameManager.I.levelParams = levelParams;
+
     }
 
     private void _damaged(int _damage)

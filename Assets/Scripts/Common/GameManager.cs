@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
         currentHasShilde = false;
         currentShootInterval = 0;
         currentSpeed = 0;
-        levelParams["currentExp"] = 0;
-        //levelParams = new Dictionary<string, int>();
+
+        levelParams.Clear();
     }
 }
